@@ -1,0 +1,50 @@
+Tput_scenario:
+    FDD:
+      5MHz:
+        5MHz:
+          64QAM:
+            dl: 30
+            ul: 8
+          256QAM:
+            dl: 30
+            ul: 8
+      10MHz:
+          - 64QAM:
+                - dl: 30
+                - ul: 8
+          - 256QAM:
+                - dl: 30
+                - ul: 8
+
+      #lte_config: !BW.yml
+
+    TDD:
+        5MHz:
+            64QAM:
+              dl: 30
+              ul: 8
+            256QAM:
+              dl: 30
+              ul: 8
+        10MHz:
+            64QAM:
+              dl: 30
+              ul: 8
+            256QAM:
+              dl: 30
+              ul: 8
+        15MHz:
+            - 64QAM:
+                  - dl: 30
+                  - ul: 8
+            - 256QAM:
+                  - dl: 30
+                  - ul: 8
+
+        20MHz:
+            - 64QAM:
+                  - dl: 30
+                  - ul: 8
+            - 256QAM:
+                  - dl: 30
+                  - ul: 8

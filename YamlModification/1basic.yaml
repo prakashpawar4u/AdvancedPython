@@ -1,0 +1,67 @@
+Testline:
+  technology: 'LTE' # LTE /NSA /SA
+  iterations: 1
+  lte_config: !include BW.yml
+  tl:
+    - CDM:
+        technology: 'LTE'
+        hostname: "10.10.10.10"
+        username: "root"
+        password: "root"
+      PTP:
+          container: "ptp02"
+          upgrade: 'false'
+          services: [ 'ptp' ]
+          rat_type: 'LTE'
+          #parameters: !include ptp.yml
+      CU:
+        rat_type: 'LTE'
+        lte_bringup: 'true'
+        #lte_config: !include lte_config.yml
+        cucp_config:
+          container: "cucp"
+          helm_path: "cucp"
+          #parameters: !include cucp.yml
+          worker_node:
+            hostname: "10.10.10.10"
+            username: "root"
+            password: 'root'
+      DU:
+        - alias: "DU"
+          hostname: "10.10.10.10"
+          username: "root"
+          password: "root"
+          container: "mvnr-mtcil1-appln-du-du02"
+          container_name: "du02"
+          worker_node:
+            hostname: "10.10.10.10"
+            username: "root"
+            password: 'root'
+            alias: 'du_worker'
+  UE:
+     - ue_type: "AT_CMD"
+       type: ''
+       hostname: "10.10.10.10"
+       username: "admin"
+       password: "admin"
+       iperf_path : 'C:\Users\luser\Desktop\iperf-2.0.5-win32'
+       attenuator:
+             type: ''
+             hostname: "10.10.10.10"
+             channel_1: 'xx'
+             channel_2: 'xx'
+  TESTPC:
+      hostname: "10.10.10.10"
+      username: "ubuntu"
+      password: "ubuntu"
+      alias: "testpc"
+  APP_SERVER:
+      hostname: "10.10.10.10"
+      username: "root"
+      password: 'root'
+      alias: 'app_server'
+  LOG_SERVER:
+      hostname: "10.10.10.10"
+      username: "admin"
+      password: 'admin'
+      log_path: '/home/executionLog/'

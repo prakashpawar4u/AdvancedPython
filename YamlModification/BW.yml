@@ -1,0 +1,17 @@
+Tput_scenario:
+    FDD:
+        15MHz:
+            - 64QAM:
+                  - dl: 30
+                  - ul: 8
+            - 256QAM:
+                  - dl: 30
+                  - ul: 8
+
+        20MHz:
+            - 64QAM:
+                  - dl: 30
+                  - ul: 8
+            - 256QAM:
+                  - dl: 30
+                  - ul: 8
