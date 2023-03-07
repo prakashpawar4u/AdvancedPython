@@ -1,0 +1,18 @@
+def myFunction(myparameter: int):
+    print(myparameter)
+
+def anotherFunc(val1: int) -> str:
+    return f"{val1 + 10}"
+
+def otherFunc(otherpar: str):
+    print(otherFunc)
+
+def funcList(param: list[int]):
+    return param
+
+#myFunction("Hello world")
+myFunction(10)
+print("Int -> Str",anotherFunc(10))
+print("STR",otherFunc("Hello"))
+print("List",funcList([1,2,"prak"]))
+
