@@ -1,0 +1,46 @@
+- filename: cuup/values.yaml
+  params:
+    global/cuup/e1_macvlan/config/gateway: 172.17.45.1
+    global/cuup/e1_macvlan/config/master: enp94s0f0.279
+    global/cuup/e1_macvlan/config/rangeEnd: 172.17.45.5
+    global/cuup/e1_macvlan/config/rangeStart: 172.17.45.5
+    global/cuup/e1_macvlan/config/subnet: 172.17.45.0/24
+    global/cuup/f1u_addr: 172.17.42.4
+    global/cuup/n3_addr: 172.17.12.8
+    global/hub: 10.10.11.35:5000
+    global/mtcil/etcd_svc_fqdn: etcd.mvnr-mtcil1-infra-mtcil-mtcil1.svc.cluster.local:2379
+    global/mtcil/kafka_svc_fqdn: kafka-svc.mvnr-mtcil1-infra-mtcil-mtcil1.svc.cluster.local:9092
+- filename: cuup/config/mgmt/gnb_vs_config.json
+  params: {}
+- filename: cuup/config/mgmt/mavenir_data_container.json
+  params:
+    data/0/ManagedElement/0/GNBCUUPFunction/0/EP_E1/0/attributes/localAddress/0/ipAddress: 172.17.45.5
+    data/0/ManagedElement/0/GNBCUUPFunction/0/EP_E1/0/attributes/remoteAddress: 172.17.45.4
+    data/0/ManagedElement/0/GNBCUUPFunction/0/EP_F1U/0/attributes/localAddress/0/ipAddress: 172.17.42.5
+    data/0/ManagedElement/0/GNBCUUPFunction/0/EP_F1U/0/attributes/remoteAddress: 172.17.42.4
+    data/0/ManagedElement/0/GNBCUUPFunction/0/EP_NgU/0/attributes/localAddress/0/ipAddress: 172.17.44.4
+    data/0/ManagedElement/0/GNBCUUPFunction/0/EP_NgU/0/attributes/remoteAddress: 172.17.12.8
+- filename: cuup/charts/bccsvc/values.yaml
+  params:
+    componentSpec/deployment/us_bccsvc/hub: 10.10.11.35:5000
+    componentSpec/deployment/us_cim/hub: 10.10.11.35:5000
+- filename: cuup/charts/dprmsvc/values.yaml
+  params:
+    componentSpec/deployment/us_cim/hub: 10.10.11.35:5000
+    componentSpec/deployment/us_dprmsvc/hub: 10.10.11.35:5000
+- filename: cuup/charts/gwsvc/values.yaml
+  params:
+    componentSpec/deployment/us_cim/hub: 10.10.11.35:5000
+    componentSpec/deployment/us_gwsvc/hub: 10.10.11.35:5000
+- filename: cuup/charts/intfmgrsvc/values.yaml
+  params:
+    componentSpec/deployment/us_cim/hub: 10.10.11.35:5000
+    componentSpec/deployment/us_intfmgrsvc/hub: 10.10.11.35:5000
+- filename: cuup/charts/iwfsvc/values.yaml
+  params:
+    componentSpec/deployment/us_cim/hub: 10.10.11.35:5000
+    componentSpec/deployment/us_iwfsvc/hub: 10.10.11.35:5000
+- filename: cuup/charts/srmsvc/values.yaml
+  params:
+    componentSpec/deployment/us_cim/hub: 10.10.11.35:5000
+    componentSpec/deployment/us_srmsvc/hub: 10.10.11.35:5000

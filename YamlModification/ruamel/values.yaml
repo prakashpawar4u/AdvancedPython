@@ -1,0 +1,146 @@
+# Default values for vDU-mnxt.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+DU:
+  replicaCount: 2
+  hostaliases:
+    ip1: 10.10.10.10
+    hostnames1:
+     - cem.mavenir.com
+    ip2: 127.0.0.1
+    hostnames2:
+     - sdaas.mavenir.com
+  image:
+    repository: harbor.mwp-mavenir.com/4g_ci_automation/mavenir/du
+    tag: mnxt-du-x86-ENBDU.R.4.7.15.0.v1
+    pullPolicy: IfNotPresent
+  resources:
+    limits:
+      hugepages1Gi: "4Gi"
+      memory: "16Gi"
+      cpu: "24"
+    requests:
+      hugepages1Gi: "4Gi"
+      memory: "16Gi"
+      cpu: "24"
+  fh_config:
+    MNXT_FH_IFACE_1: enp96s0f0
+    MNXT_FH_IFACE_2: enp96s0f1
+    MNXT_ORAN: ENABLE
+    MNXT_MP_VLAN: 1257
+    MNXT_CP_VLAN: 1258
+    MH_MTU: 1600
+  RRU_OPTION_60_TAG: "o-ran-ru2/MT"
+
+du_midhaul_netattchdef:
+  mh_name: mh-cem-net
+  mh_master: "enp94s0f0"
+  mh_mode: bridge
+  mh_ipamtype: "whereabouts"
+  mh_ipamsubnet: "172.17.63.0/24"
+  mh_ipamrangestart: "172.17.63.187"
+  mh_ipamrangeend: "172.17.63.188"
+  mh_routes:
+    mh_destination: "0.0.0.0/0"
+  mh_ipamgateway: "172.17.63.1"
+  mh_logfile: "/tmp/whereabouts.log"
+  mh_loglevel: "debug"
+
+
+l1_pci_net_netattchdef:
+  configversion: 0.3.0
+  name: l1-pci-net
+  dpdk_resource: intel.com/l1_sriov_vf
+  configname: sriov
+  configtype: sriov
+  ipamtype: host-local
+  ipamsubnet: "192.168.2.0/24"
+  ipamrangestart: "192.168.2.2"
+  ipamsrangeend: "192.168.2.254"
+  routes:
+    destination: "0.0.0.0/0"
+  gateway: "192.168.2.1"
+    #pfnames are the fronthaul names , pls follow the same syntax .
+  pfnames:
+   - '"enp96s0f0#0","enp96s0f1#0"'
+
+
+
+PTP:
+  ptp_interface: enp94s0f1
+  ptp_two_step: 0
+  hostaliases:
+    ip: 10.10.10.10
+    hostnames:
+     - cem.mavenir.com
+  image:
+    repository: harbor.mwp-mavenir.com/4g_ci_automation/mavenir/du-ptp
+    tag: mnxt-du-x86-ENBDU.R.4.7.15.0.v1
+    pullPolicy: IfNotPresent
+  resources:
+    limits:
+      memory: "4Gi"
+      cpu: "200m"
+    requests:
+      memory: "4Gi"
+      cpu: "200m"
+
+
+nodeSelector:
+  VDU_SETUP: wk0
+
+namespace: mnxt
+
+
+
+
+
+
+
+
+
+
+
+###############for future use
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+   - host: chart-example.local
+     paths: []
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+tolerations: []
+
+affinity: {}

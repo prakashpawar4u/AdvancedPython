@@ -1,0 +1,9 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <sys xmlns="urn:mavenir:ns:yang:enbcu:6.0.15.0">
+    <platform>
+              <endindicator>
+                <indicator>configDone</indicator>
+              </endindicator>
+    </platform>
+  </sys>
+</config>

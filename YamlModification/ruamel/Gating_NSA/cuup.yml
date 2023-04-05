@@ -1,0 +1,3 @@
+- filename: cuup/values.yaml
+  params:
+    global/hub: 10.10.6.150:5000

@@ -1,0 +1,110 @@
+Testline:
+  tl:
+    - CU:
+        hostname: "10.10.8.23"
+        username: "root"
+        password: "mavenir"
+        alias: "lte_CU"
+        #load_path: "/data/rajesh/loads/NSA/LTE_78_6_11/centos_7_8_xran-ENBCU-FDD-ENBCU-R_4_6_11_0-XRAN-v1.tar.gz"
+        load_path: "/data/rajesh/loads/NSA/LTE_4_6_20/centos_7_8_xran-ENBCU-FDD-ENBCU-R_4_6_20_0-XRAN-v1.tar.gz"
+        #load_path: "/data/rajesh/loads/NSA/LTE_13/centos_7_6_xran-ENBCU-FDD-ENBCU-R_4_5_13_0-XRAN-v1.tar.gz"
+        build_path: "/home/NSA_BLR/4_6_test"
+        config:
+          - fileName: "initial_data_xran_du.xml"
+            parameters:
+              vbbu/DUCellConfig:
+                DUIp_CP: '172.16.61.212'
+                DUPort_CP: '33333'
+                DUIp_UP: '172.16.61.212'
+                DUPort_UP: '44444'
+                numberOfCells: '1'
+                lr_cell: '1'
+          - fileName: "platform_init_data_vnf_xran.xml"
+            parameters:
+              platform/ext_ip/ip_addr: ['10.10.8.23', '172.16.62.22', '172.16.62.22', '172.16.52.23']
+              bbuport/bbu_service_port: {'index': 5, 'servicePort': '44444'}
+          - fileName: "initial_data_xran_vbbu.xml"
+            parameters:
+              vbbu/enodeb:
+                enbId: '202'
+                CipheringAlgorithmList: 'NULL_ALGO'
+                IntegrityAlgorithmList: 'SNOW3G_ALGO'
+                PCI_LIST: '201'
+                DefaultPagingCycle: 'rf64'
+              vbbu/Features_enb/ENDCSupported: '3'
+              vbbu/SCTP: {'index': 2, 'SackDelay': '20'}
+              vbbu/Mme/MMEIp: '172.17.21.70'
+              vbbu/PLMNList/PLMNID: '22222'
+          - fileName: "initial_data_xran_cell1.xml"
+            parameters:
+              vbbu/cell/enbId: '202'
+              vbbu/PLMNList/PLMNID: '22222'
+              vbbu/cell/PhyCellID: '201'
+              vbbu/NeighborList/NRCellNumberOfEntries: '1'
+              vbbu/Features/IsSpsEnable: 'false'
+              vbbu/LTE/FREQENCYBW: 'FREQ_BANDWIDTH_20MHZ'
+              vbbu/MAC_Scheduler/NumOfRb: '100'
+              vbbu/InterFreq_Carrier/AllowedMeasBandwidth: 'MBW100'
+              vbbu/VBBUCommon:
+                nB: 'oneT'
+                ExpiryCount: '500'
+                UeInactiveTimer: '200000'
+              vbbu/PLMNList/CellReservedForOperatorUse: 'notReserved'
+              vbbu/IRAT_NR/NRFreqNumberOfEntries: '1'
+              vbbu/IRAT_NRFreq:
+                nr_earfcnDl: '656668'
+                nr_earfcnUl: '656668'
+              vbbu/NLU_LTECell/PLMN: '22222'
+              vbbu/NLU_NRCell:
+                nr_pci: '1'
+                PLMNID: '22222'
+                nr_earfcnDl: '656668'
+                nr_earfcnUl: '656668'
+                SSB_perodicity: 'SF20'
+                GNBAddress: '172.17.43.11'
+              vbbu/ENDC_CFG:
+                nrPdcpEnable: 'true'
+                nrPdcpSnSize18Bit: 'true'
+      DU:
+        - hostname: "172.16.61.212"
+          username: "root"
+          password: "mavenir"
+          alias: "lte_DU"
+          proxy: "lte_CU"
+          #load_path: "/data/rajesh/loads/NSA/LTE_13/centos_7_6_xran_mnxt-ENBDU-FDD-ENBDU-R_4_5_13_0-XRAN-v1.tar.gz"
+          #load_path: "/data/rajesh/loads/NSA/LTE_78_6_11/centos_7_8_xran_mnxt-ENBDU-FDD-ENBDU-R_4_6_11_0-XRAN-v1.tar.gz"
+          load_path: "/data/rajesh/loads/NSA/LTE_4_6_20/centos_7_8_xran_mnxt-ENBDU-FDD-ENBDU-R_4_6_20_0-XRAN-v1.tar.gz"
+          build_path: "/data/storage/NSA_BLR/4_6_test"
+          config:
+            - fileName: "du_init_unittest_data.xml"
+              parameters:
+                du-config: [{operation: 'delete', index: [1, 2], cell-info: "cell-info"}, {operation: 'delete', index: [1, 2], ru-config-attributes: "ru-config-attributes"}]
+                cpri-adapter-hardware: [{operation: 'delete', index: [1, 2], cpri-ports: "cpri-ports"}]
+                du-config/du-config-attributes:
+                  cu-ip-if-cp: '172.16.62.22'
+                  cu-ip-if-up: '172.16.62.22'
+                  cu-port-if-up: '44444'
+                  du-id: '1'
+                du-config/ru-config-attributes/ru-id: '1'
+                du-config/ru-config-attributes/ru-vendor: 'SUN-FDD'
+                cpri-adapter-hardware/cpri-ports:
+                  ru-id: '1'
+                  cpri-line-rate: 'LINERATE5'
+                  ul-delay: '1344'
+                  dl-delay: '2229'
+                  max-bandwidth-ul: 'MHZ_20'
+                  max-bandwidth-dl: 'MHZ_20'
+                  radio-type: 'FDD'
+                mavenir-duapp/DUConfig:
+                  duIpIfCp: '172.16.61.212'
+                  duPortIfCp: '33333'
+                  duIpIfUp: '172.16.61.212'
+                  numCells: '1'
+          rru:
+            - hostname: "172.16.1.204"
+              username: "admin"
+              password: "F!7dH3nM4vrBl@ck"
+              alias: "rru"
+              type: "N2RU"
+              su_password: "C2e@t0r!MvR4dH3n"
+              command: ["regtool reg w uio0 0x134 0x540", "regtool reg w uio0 0x138 0x8b5", "regtool reg w uio0 0x154 0x7a", "regtool reg w uio0 0x158 0x6a", "regtool reg w uio0 0x190 0x6", "regtool reg w uio0 0x14 0x379d", "regtool reg w uio0 0x04 0x01"]

@@ -1,0 +1,158 @@
+- filename: cucp/values.yaml
+  params:
+    global/hub: 10.10.11.35:5000
+    global/images/gnbmgr/tag: mvrp-gnb_mgr-x86-5.0.1.141
+    global/images/ngclientiwf/tag: mvrp-sctp_ng_client_iwf-x86-5.0.1.141
+    global/images/sctpe1iwf/tag: mvrp-sctp_e1_iwf-x86-5.0.1.141
+    global/images/sctpf1iwf/tag: mvrp-sctp_f1_iwf-x86-5.0.1.141
+    global/images/sctpxniwf/tag: mvrp-sctp_xn_iwf-x86-5.0.1.141
+    global/images/ueconmgr/tag: mvrp-ue_conn_mgr-x86-5.0.1.141
+    global/network/gnbmgr_cu_f1c_netattchdef/gateway: 172.17.1.1
+    global/network/gnbmgr_cu_f1c_netattchdef/ipamrangestart: 172.17.1.13
+    global/network/gnbmgr_cu_f1c_netattchdef/ipamsrangeend: 172.17.1.13
+    global/network/gnbmgr_cu_f1c_netattchdef/ipamsubnet: 172.17.1.0/24
+    global/network/gnbmgr_cu_f1c_netattchdef/master: enp94s0f0
+    global/network/ngclient_cu_f1c_netattchdef/gateway: 172.17.43.1
+    global/network/ngclient_cu_f1c_netattchdef/ipamrangestart: 172.17.43.5
+    global/network/ngclient_cu_f1c_netattchdef/ipamsrangeend: 172.17.43.5
+    global/network/ngclient_cu_f1c_netattchdef/ipamsubnet: 172.17.43.0/24
+    global/network/ngclient_cu_f1c_netattchdef/master: enp94s0f0.277
+    global/network/ngclient_cu_f1c_netattchdef/routes/destination: 172.17.11.0/24
+    global/network/sctpe1iwf_cu_f1c_netattchdef/gateway: 172.17.45.1
+    global/network/sctpe1iwf_cu_f1c_netattchdef/ipamrangestart: 172.17.45.4
+    global/network/sctpe1iwf_cu_f1c_netattchdef/ipamsrangeend: 172.17.45.4
+    global/network/sctpe1iwf_cu_f1c_netattchdef/ipamsubnet: 172.17.45.0/24
+    global/network/sctpe1iwf_cu_f1c_netattchdef/master: enp94s0f0.279
+    global/network/sctpf1iwf_cu_f1c_netattchdef/gateway: 172.17.41.1
+    global/network/sctpf1iwf_cu_f1c_netattchdef/ipamrangestart: 172.17.41.5
+    global/network/sctpf1iwf_cu_f1c_netattchdef/ipamsrangeend: 172.17.41.5
+    global/network/sctpf1iwf_cu_f1c_netattchdef/ipamsubnet: 172.17.41.0/24
+    global/network/sctpf1iwf_cu_f1c_netattchdef/master: enp94s0f0.275
+    global/network/sctpxniwf_cu_f1c_netattchdef/gateway: 172.17.1.1
+    global/network/sctpxniwf_cu_f1c_netattchdef/ipamrangestart: 172.17.1.19
+    global/network/sctpxniwf_cu_f1c_netattchdef/ipamsrangeend: 172.17.1.19
+    global/network/sctpxniwf_cu_f1c_netattchdef/ipamsubnet: 172.17.1.0/24
+    global/network/sctpxniwf_cu_f1c_netattchdef/master: enp94s0f0
+    global/oamsidecar/tag: v1.9.1
+    nf/version: '1.1'
+- filename: cucp/config/mgmt/gnb_vs_config.json
+  params:
+    gnbvs/gnbCuCpConfig/0/gNBId: '1'
+    gnbvs/gnbCuCpConfig/0/gnbCellCuCpVsConfig/0/RUId: 1
+    gnbvs/gnbCuCpConfig/0/gnbCellCuCpVsConfig/0/nrConfig/qosCfg/1/fiveQi: 9
+    gnbvs/gnbCuCpConfig/0/gnbCellCuCpVsConfig/0/ueInactivityTimerSec: s15
+    gnbvs/gnbCuCpConfig/0/gnbE1VsConfig/0/cuUpId: 1
+    gnbvs/gnbCuCpConfig/0/gnbF1cVsConfig/0/duId: '1'
+    gnbvs/gnbCuCpConfig/0/id: '1'
+    gnbvs/gnbCuCpConfig/0/sliceManagerIpAddress: 172.17.11.8
+    gnbvs/gnbCuCpConfig/0/tacSpecificConfig/0/plmnSpecificConfig/0/MCC: '111'
+    gnbvs/gnbCuCpConfig/0/tacSpecificConfig/0/plmnSpecificConfig/0/MNC: '11'
+    gnbvs/gnbCuCpConfig/0/tacSpecificConfig/0/tac: '1'
+- filename: cucp/config/mgmt/mavenir_data_container.json
+  params:
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_E1/0/attributes/localAddress/0/ipAddress: 172.17.45.4
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_E1/0/attributes/remoteAddress: 172.17.45.5
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_E1/0/id: '1'
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_F1C/0/id: '2'
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_F1C/0/attributes/localAddress/0/ipAddress: 172.17.41.5
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_F1C/0/attributes/localAddress/0/vlanId: 275
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_F1C/0/attributes/remoteAddress: 172.17.41.4
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_NgC/0/attributes/localAddress/0/ipAddress: 172.17.43.5
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_NgC/0/attributes/localAddress/0/vlanId: 277
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_NgC/0/attributes/remoteAddress: 172.17.11.8
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_X2C/0/attributes/localAddress/0/ipAddress: 172.17.6.19
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_X2C/0/attributes/remoteAddress: 172.17.6.20
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_XnC/0/attributes/localAddress/0/ipAddress: 172.17.6.19
+    data/0/ManagedElement/0/GNBCUCPFunction/0/EP_XnC/0/attributes/remoteAddress: 172.17.6.20
+    data/0/ManagedElement/0/GNBCUCPFunction/0/NRCellCU/0/attributes/pLMNInfoList/0/mcc: '111'
+    data/0/ManagedElement/0/GNBCUCPFunction/0/NRCellCU/0/attributes/pLMNInfoList/0/mnc: '11'
+    data/0/ManagedElement/0/GNBCUCPFunction/0/attributes/gNBId: '1'
+    data/0/ManagedElement/0/GNBCUCPFunction/0/attributes/pLMNId/0/mcc: '111'
+    data/0/ManagedElement/0/GNBCUCPFunction/0/attributes/pLMNId/0/mnc: '11'
+    data/0/ManagedElement/0/GNBCUCPFunction/0/attributes/rRMPolicyMemberList/0/mcc: '111'
+    data/0/ManagedElement/0/GNBCUCPFunction/0/attributes/rRMPolicyMemberList/0/mnc: '11'
+    data/0/ManagedElement/0/GNBCUCPFunction/0/id: '1'
+    data/0/NRNetwork/0/ExternalAMFFunction/0/attributes/pLMNIdList/0/mcc: '111'
+    data/0/NRNetwork/0/ExternalAMFFunction/0/attributes/pLMNIdList/0/mnc: '11'
+    data/0/RRMPolicyRatio/0/attributes/rRMPolicyMemberList/0/mcc: '111'
+    data/0/RRMPolicyRatio/0/attributes/rRMPolicyMemberList/0/mnc: '11'
+- filename: cucp/charts/ueconmgr/values.yaml
+  params:
+    deployment/metaspec/annotations/mtcil.com~1mmaas: '{ "scrape": "false", "path":
+      "/metrics", "port": "8081", "scheme": "http", "measurementInterval": "15s",
+      "maxRetention": "20" }'
+    deployment/metaspec/annotations/prometheus.io~1path: /metrics
+    deployment/metaspec/annotations/prometheus.io~1port: '8081'
+    deployment/metaspec/labels/mtcil.com~1mmaas_clock_aligned: 'false'
+    nf/version: '1.1'
+    ueconmgr/hub: 10.10.11.35:5000
+    ueconmgr/image/tag: cucp1_ue_conn_mgr_5.0.1.141
+- filename: cucp/charts/gnbmgr/values.yaml
+  params:
+    deployment/metaspec/annotations/mtcil.com~1mmaas: '{ "scrape": "false", "path":
+      "/metrics", "port": "8081", "scheme": "http", "measurementInterval": "15s",
+      "maxRetention": "20" }'
+    deployment/metaspec/annotations/prometheus.io~1path: /metrics
+    deployment/metaspec/annotations/prometheus.io~1port: '8081'
+    deployment/metaspec/labels/mtcil.com~1mmaas_clock_aligned: 'false'
+    gnbmgr/hub: 10.10.11.35:5000
+    gnbmgr/image/tag: cucp1_gnb_mgr_5.0.1.141
+    nf/version: '1.1'
+- filename: cucp/config/mgmt/cim.json
+  params:
+    cimConfig/cim_settings/ttl_timeout: 10
+- filename: cucp/charts/ngclientiwf/values.yaml
+  params:
+    deployment/metaspec/annotations/mtcil.com~1mmaas: '{ "scrape": "false", "path":
+      "/metrics", "port": "8081", "scheme": "http", "measurementInterval": "15s",
+      "maxRetention": "20" }'
+    deployment/metaspec/annotations/prometheus.io~1path: /metrics
+    deployment/metaspec/annotations/prometheus.io~1port: '8081'
+    deployment/metaspec/labels/mtcil.com~1mmaas_clock_aligned: 'false'
+    nf/version: '1.1'
+    ngclientiwf/hub: 10.10.11.35:5000
+    ngclientiwf/image/tag: cucp1_sctp_ng_client_iwf_5.0.1.141
+- filename: cucp/charts/sctpe1iwf/values.yaml
+  params:
+    deployment/metaspec/annotations/mtcil.com~1mmaas: '{ "scrape": "false", "path":
+      "/metrics", "port": "8081", "scheme": "http", "measurementInterval": "15s",
+      "maxRetention": "20" }'
+    deployment/metaspec/annotations/prometheus.io~1path: /metrics
+    deployment/metaspec/annotations/prometheus.io~1port: '8081'
+    deployment/metaspec/labels/mtcil.com~1mmaas_clock_aligned: 'false'
+    nf/version: '1.1'
+    sctpe1iwf/hub: 10.10.11.35:5000
+    sctpe1iwf/image/tag: cucp1_sctp_e1_iwf_5.0.1.141
+- filename: cucp/charts/sctpf1iwf/values.yaml
+  params:
+    deployment/metaspec/annotations/mtcil.com~1mmaas: '{ "scrape": "false", "path":
+      "/metrics", "port": "8081", "scheme": "http", "measurementInterval": "15s",
+      "maxRetention": "20" }'
+    deployment/metaspec/annotations/prometheus.io~1path: /metrics
+    deployment/metaspec/annotations/prometheus.io~1port: '8081'
+    deployment/metaspec/labels/mtcil.com~1mmaas_clock_aligned: 'false'
+    nf/version: '1.1'
+    sctpf1iwf/hub: 10.10.11.35:5000
+    sctpf1iwf/image/tag: cucp1_sctp_f1_iwf_5.0.1.141
+- filename: cucp/charts/sctpxniwf/values.yaml
+  params:
+    deployment/metaspec/annotations/mtcil.com~1mmaas: '{ "scrape": "false", "path":
+      "/metrics", "port": "8081", "scheme": "http", "measurementInterval": "15s",
+      "maxRetention": "20" }'
+    deployment/metaspec/annotations/prometheus.io~1path: /metrics
+    deployment/metaspec/annotations/prometheus.io~1port: '8081'
+    deployment/metaspec/labels/mtcil.com~1mmaas_clock_aligned: 'false'
+    nf/version: '1.1'
+    sctpxniwf/hub: 10.10.11.35:5000
+    sctpxniwf/image/tag: cucp1_sctp_xn_iwf_5.0.1.141
+- filename: cucp/charts/ueconmgr/values.yaml
+  params:
+    deployment/metaspec/annotations/mtcil.com~1mmaas: '{ "scrape": "false", "path":
+      "/metrics", "port": "8081", "scheme": "http", "measurementInterval": "15s",
+      "maxRetention": "20" }'
+    deployment/metaspec/annotations/prometheus.io~1path: /metrics
+    deployment/metaspec/annotations/prometheus.io~1port: '8081'
+    deployment/metaspec/labels/mtcil.com~1mmaas_clock_aligned: 'false'
+    nf/version: '1.1'
+    ueconmgr/hub: 10.10.11.35:5000
+    ueconmgr/image/tag: cucp1_ue_conn_mgr_5.0.1.141

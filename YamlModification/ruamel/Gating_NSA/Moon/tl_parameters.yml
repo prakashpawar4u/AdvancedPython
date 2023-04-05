@@ -1,0 +1,104 @@
+dut_tlTestline:
+  tl:
+    - CDM:
+        hostname: "10.10.11.35"
+        username: "root"
+        password: "Lcmanager"
+        alias: "CDM"
+        docker_port: '5000'
+        load_id: '5.0.1.158'
+        load_server: 'http://10.10.205.54/5G/SA/'
+        load_path: '/root/CI/MAF/MAF_CI/loads'
+        chart_path: '/root/CI/MAF/MAF_CI/charts'
+        #private_build: 'http://10.10.205.54/5G/SA/Private_Loads/mvrp-du-x86-5.0.1.154.v1-docker-img.tar.gz'
+      CU:
+        cucp_config:
+          container: "mvnr-mtcil1-appln-cucp-cucp1"
+          container_name: "cucp1"
+          helm_path: "cucp"
+          services: ['gnb_mgr', 'sctp_e1_iwf', 'sctp_f1_iwf', 'sctp_ng_client_iwf', 'sctp_xn_iwf', 'ue_conn_mgr']
+          pod_services: ['gnbmgr', 'sctpe1iwf', 'sctpf1iwf', 'ngclientiwf', 'sctpxniwf', 'ueconmgr']
+          parameters: !include cucp.yml
+          worker_node:
+            hostname: "10.10.11.32"
+            username: "root"
+            password: 'mavenir'
+            alias: 'cu_worker'
+            rat_type: 'SA_FDD'
+            node_type: 'CUDU'
+        cuup_config:
+          container: "mvnr-mtcil1-appln-cuup-cuup1"
+          container_name: "cuup1"
+          helm_path: "cuup"
+          services: ['bccsvc', 'dprmsvc', 'gwsvc', 'intfmgrsvc', 'iwfsvc', 'srmsvc']
+          pod_services: ['bccsvc', 'dprmsvc', 'gwsvc', 'intfmgrsvc', 'iwfsvc', 'srmsvc']
+          route_cmd: ['ip route add 172.17.12.0/24 via 172.17.44.1 eth1']
+          parameters: !include cuup.yml
+      DU:
+        - alias: "DU"
+          hostname: "10.10.11.32"
+          username: "root"
+          password: "mavenir"
+          container: "mvnr-mtcil1-appln-du-du01"
+          container_name: "du01"
+          helm_path: "du"
+          services: ['du']
+          pod_services: ['du']
+          rat_type: 'SA_FDD'
+          parameters: !include du.yml
+          rru:
+             - hostname: "10.10.11.32"
+               username: "luser"
+               password: 'Mav#12345'
+               alias: 'rru1'
+               type: 'MTI'
+               radio_ip: '192.168.1.28'
+               # ttl_script_path: 'C:\Users\luser\Desktop\from_old_SErver\RUsettingfiles_v1_6_VLAN_mmW\38G_RU'
+               #teraterm_path: 'C:\Program Files (x86)\teraterm'
+          worker_node:
+            hostname: "10.10.11.32"
+            username: "root"
+            password: 'mavenir'
+            alias: 'du_worker'
+            rat_type: 'SA_FDD'
+            node_type: 'CUDU'
+  PERFORMANCE:
+      256QAM_DL_2L: 41
+      256QAM_DLUL_2L: 41
+      UL: 12.5
+      256QAM_DL_1L: 20 
+      256QAM_DLUL_1L: 20
+      64QAM_DL_1L: 15.5
+      64QAM_DLUL_1L: 15
+      64QAM_DL_2L: 31
+      64QAM_DLUL_2L: 31
+      MARGIN: 1
+  UE:
+    - ue_type: "prisma_sa"
+      airmosaic_ip: '10.10.9.16'
+      airmosaic_port: '8090'
+      rest_srv_ip: '10.10.9.16'
+      sid: 'C:\\Keysight\\AM_Files_NR\\Automation_Scenarios\\'
+      scenario_path: 'C:\\Keysight\\AM_Files_NR\\Automation_Scenarios\\'
+      lsu_ip: '192.168.202.2'
+      am_special_dir: 'C:\\Program Files\\AirMosaic LTE Uu 8.14.3RC11\\airmosaic_lteuu\\bin'
+      cell_id: 'r5gnr.ue.03'
+      cell_creation_script: '/home/user/cell3_NEC.sh'
+  TESTPC:
+      hostname: "10.10.9.153"
+      username: "ubuntu"
+      password: "ranzure1"
+      alias: "testpc"
+  APP_SERVER:
+      hostname: "10.10.4.196"
+      username: "root"
+      password: 'mavenir'
+      alias: 'app_server'
+      application_ip: "172.16.80.12"
+  LOG_SERVER:
+      hostname: "10.10.6.161"
+      username: "ci-log"
+      password: 'mavenir'
+      alias: 'log_server'
+      log_path: '/home/ci-log/5g_logs/SA/'
+

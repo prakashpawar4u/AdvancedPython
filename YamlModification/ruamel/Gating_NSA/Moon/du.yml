@@ -1,0 +1,84 @@
+- filename: du/values.yaml
+  params:
+    DU/RuMac: 00:0D:3B:1C:85:87
+    DU/f1if: intel.com/sriov_netE
+    DU/image/repository: 10.10.11.35:5000
+    DU/image/tag: mvrp-du-x86-5.0.1.141
+    DU/l1if: intel.com/sriov_netD
+    DU/nodeSelector/nodeType: CU
+    DU/upNet: 172.17.42.0/24
+    deployment/metaspec/annotations/prometheus.io~1port: '8081'
+    deployment/metaspec/labels/mtcil.com~1mmaas_clock_aligned: 'false'
+    du_f1c_netattchdef/gateway: 172.17.41.1
+    du_f1c_netattchdef/ipamrangestart: 172.17.41.4
+    du_f1c_netattchdef/ipamsrangeend: 172.17.41.4
+    du_f1c_netattchdef/ipamsubnet: 172.17.41.0/24
+    du_f1c_netattchdef/master: enp94s0f0.275
+    du_f1u_macvlan_netattchdef/gateway: 172.17.42.1
+    du_f1u_macvlan_netattchdef/ipamrangestart: 172.17.42.4
+    du_f1u_macvlan_netattchdef/ipamsrangeend: 172.17.42.4
+    du_f1u_macvlan_netattchdef/ipamsubnet: 172.17.42.0/24
+    du_f1u_macvlan_netattchdef/master: enp94s0f0.276
+    du_mplane_netattchdef/gateway: 172.17.8.1
+    du_mplane_netattchdef/ipamrangestart: 172.17.8.14
+    du_mplane_netattchdef/ipamsrangeend: 172.17.8.14
+    du_mplane_netattchdef/ipamsubnet: 172.17.8.0/24
+    du_mplane_netattchdef/master: enp94s0f0
+    global/hub: 10.10.11.35:5000
+    l1_pci_net_netattchdef/dpdk_resource: intel.com/l1_sriov_netD
+- filename: du/config/mgmt/mavenir_data_container.json
+  params:
+    data/0/ManagedElement/0/GNBDUFunction/0/EP_F1C/0/attributes/localAddress/0/ipAddress: 172.17.41.4
+    data/0/ManagedElement/0/GNBDUFunction/0/EP_F1C/0/attributes/localAddress/0/vlanId: 275
+    data/0/ManagedElement/0/GNBDUFunction/0/EP_F1C/0/attributes/remoteAddress: 172.17.41.5
+    data/0/ManagedElement/0/GNBDUFunction/0/EP_F1U/0/attributes/localAddress/0/ipAddress: 172.17.42.4
+    data/0/ManagedElement/0/GNBDUFunction/0/EP_F1U/0/attributes/localAddress/0/vlanId: 276
+    data/0/ManagedElement/0/GNBDUFunction/0/EP_F1U/0/attributes/remoteAddress: 172.17.42.5
+    data/0/ManagedElement/0/GNBDUFunction/0/NRCellDU/0/attributes/nRTAC: 1
+    data/0/ManagedElement/0/GNBDUFunction/0/NRCellDU/0/attributes/pLMNInfoList/0/mcc: '111'
+    data/0/ManagedElement/0/GNBDUFunction/0/NRCellDU/0/attributes/pLMNInfoList/0/mnc: '11'
+    data/0/ManagedElement/0/GNBDUFunction/0/NRCellDU/0/attributes/rRMPolicyMemberList/0/mcc: '111'
+    data/0/ManagedElement/0/GNBDUFunction/0/NRCellDU/0/attributes/rRMPolicyMemberList/0/mnc: '11'
+    data/0/ManagedElement/0/GNBDUFunction/0/attributes/gNBId: '1'
+    data/0/ManagedElement/0/GNBDUFunction/0/attributes/rRMPolicyMemberList/0/mcc: '111'
+    data/0/ManagedElement/0/GNBDUFunction/0/attributes/rRMPolicyMemberList/0/mnc: '11'
+    data/0/RRMPolicyRatio/0/attributes/rRMPolicyMemberList/0/mcc: '111'
+    data/0/RRMPolicyRatio/0/attributes/rRMPolicyMemberList/0/mnc: '11'
+    data/0/ManagedElement/0/GNBDUFunction/0/BWP/0/attributes/numberOfRBs : 25
+    data/0/ManagedElement/0/GNBDUFunction/0/BWP/1/attributes/numberOfRBs : 25
+    data/0/ManagedElement/0/GNBDUFunction/0/BWP/2/attributes/numberOfRBs : 25
+    data/0/ManagedElement/0/GNBDUFunction/0/NRCellDU/0/attributes/bSChannelBwDL : 5
+    data/0/ManagedElement/0/GNBDUFunction/0/NRCellDU/0/attributes/bSChannelBwUL : 5
+    data/0/ManagedElement/0/GNBDUFunction/0/NRCellDU/0/attributes/bSChannelBwSUL : 5
+- filename: du/config/mgmt/gnb_vs_config.json
+  params:
+    gnbvs/gnbDuConfig/0/cuCpId: '1'
+    gnbvs/gnbDuConfig/0/du-config/ru-config-attributes/0/ru-id: 1
+    gnbvs/gnbDuConfig/0/du-config/ru-config-attributes/0/ru-ip: 0.0.0.0
+    gnbvs/gnbDuConfig/0/gNBId: '1'
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/ConfigurationCommon/tddSlotFormat: 7
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/macConfigCommon/enableTA: false
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/macConfigCommon/ulNumOfAntPorts: 1
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/rntiStart: 17017
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/UplinkConfigCommon/ulBwpCfg/0/puschP0NominalWithGrant: -76
+    gnbvs/gnbDuConfig/0/id: '1'
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/DownlinkConfigCommon/dlFreqInfo/subCarrierCfg/0/carrierBw : 25
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/UplinkConfigCommon/ulFreqInfo/subCarrierCfg/0/carrierBw : 25
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/supplementaryUplinkConfigCommon/sulFreqInfo/subCarrierCfg/0/carrierBw : 25
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/supplementaryUplinkConfigCommon/sulFreqInfo/subCarrierCfg/1/carrierBw : 25
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/l1-CfgInfo/nDlFftSize : 512
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/l1-CfgInfo/nUlFftSize : 512
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/DownlinkConfigCommon/dlFreqInfo/absoluteFreqPointA : 636750
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/DownlinkConfigCommon/dlFreqInfo/absoluteArfcnPointA : 127350
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/DownlinkConfigCommon/dlFreqInfo/absoluteFreqSsb : 638550
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/UplinkConfigCommon/ulFreqInfo/absoluteFreqPointA : 682750
+    gnbvs/gnbDuConfig/0/gnbCellDuVsConfig/0/UplinkConfigCommon/ulFreqInfo/absoluteArfcnPointA : 136550
+- filename: du/config/mgmt/cim.json
+  params:
+    cimConfig/cim_settings/ttl_timeout: 10
+- filename: du/config/static/phycfg_xran.xml
+  params:
+    xRAN/DuMac: 00:11:22:33:44:66
+    xRAN/RuMac: 00:0D:3B:1C:85:87
+    xRAN/dpdkXranDeviceCP: 0000:5f:02.0
+    xRAN/dpdkXranDeviceUP: 0000:5f:02.1

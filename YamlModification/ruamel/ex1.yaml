@@ -1,0 +1,18 @@
+Testline:
+  technology: 'LTE' # LTE /NSA /SA
+  iterations: 1
+  lte_config: !include BW.yml
+  tl:
+    - CDM:
+        technology: 'LTE'
+        hostname: "10.10.10.10"
+        username: "root"
+        password: "root"
+
+employees:
+  - name: Jeffrey Bezos
+    job title: CEO
+    annual salary (USD): 1000000000000
+  - name: John Smith
+    job title: factory worker
+    annual salary (USD): 20000

@@ -1,0 +1,105 @@
+Testline:
+  tl:
+    - CDM:
+        hostname: "10.10.6.150"
+        username: "root"
+        password: "Lcmanager"
+        alias: "CDM"
+        docker_port: '5000'
+        load_id: '5.0.1.169'
+        load_server: 'http://10.10.205.54/5G/SA/'
+        load_path: '/root/CI/MAF_CI_test/MAF/loads'
+        chart_path: '/root/CI/MAF_CI_test/MAF/charts'
+        #private_build: 'http://10.10.205.54/5G/SA/Private_Loads/mvrp-du-x86-5.0.1.154.v1-docker-img.tar.gz'
+      CU:
+        rat_type: 'NSA_TDD_SUB6_100MHZ'
+        lte_bringup: 'true'
+        lte_config: !include lte_config.yml
+        cucp_config:
+          container: "mvnr-mtcil1-appln-cucp-cucp1"
+          container_name: "cucp1"
+          helm_path: "cucp"
+          services: ['gnb_mgr', 'sctp_e1_iwf', 'sctp_f1_iwf', 'sctp_x2_iwf', 'ue_conn_mgr']
+          pod_services: ['gnbmgr', 'sctpe1iwf', 'sctpf1iwf', 'sctpx2iwf', 'ueconmgr']
+          route_cmd: 'route add -net 172.16.62.0/24 gw 172.17.43.1'
+          parameters: !include cucp.yml
+          worker_node:
+            hostname: "10.10.6.37"
+            username: "root"
+            password: 'mavenir'
+            alias: 'cu_worker'
+            rat_type: 'NSA_TDD_SUB6_100MHZ'
+            node_type: 'CUDU'
+        cuup_config:
+          container: "mvnr-mtcil1-appln-cuup-cuup1"
+          container_name: "cuup1"
+          helm_path: "cuup"
+          services: ['bccsvc', 'dprmsvc', 'gwsvc', 'intfmgrsvc', 'iwfsvc', 'srmsvc']
+          pod_services: ['bccsvc', 'dprmsvc', 'gwsvc', 'intfmgrsvc', 'iwfsvc', 'srmsvc']
+          #route_cmd: ['ip route add 172.17.21.96/27 via 172.17.44.1 eth1']
+          route_cmd: ['ip route add 172.17.21.96/27 via 172.17.44.1 dpdk_ngu0']
+          parameters: !include cuup.yml
+      DU:
+        - alias: "DU"
+          hostname: "10.10.11.27"
+          username: "root"
+          password: "mavenir"
+          container: "mvnr-mtcil1-appln-du-du01"
+          container_name: "du01"
+          helm_path: "du"
+          services: ['du']
+          pod_services: ['du']
+          rat_type: 'NSA_TDD_SUB6_100MHZ'
+          parameters: !include du.yml
+          rru:
+             - hostname: "10.10.6.89"
+               username: "luser"
+               password: 'Mav#12345'
+               alias: 'rru1'
+               type: 'NEC'
+               radio_ip: '192.168.1.131'
+               ttl_script_path: 'C:\Users\luser\Desktop\from_old_SErver\RUsettingfiles_v1_6_VLAN_mmW\38G_RU'
+               teraterm_path: 'C:\Program Files (x86)\teraterm'
+          worker_node:
+            hostname: "10.10.6.37"
+            username: "root"
+            password: 'mavenir'
+            alias: 'du_worker'
+            rat_type: 'NSA_TDD_SUB6_100MHZ'
+            node_type: 'CUDU'
+  PERFORMANCE:
+      256QAM_DL_2L: 680
+      256QAM_DLUL_2L: 680
+      UL: 62
+      256QAM_DL_1L: 335
+      256QAM_DLUL_1L: 335
+      64QAM_DL_1L: 252
+      64QAM_DLUL_1L: 252
+      64QAM_DL_2L: 515
+      64QAM_DLUL_2L: 515
+      MARGIN: 1
+  UE:
+     - ue_type: "AT_CMD"
+       hostname: "10.10.6.89"
+       username: "luser"
+       password: "Mav#12345"
+       comport: "COM3"
+       alias: "UE"
+       iperf_path : 'C:\Users\luser\Desktop\iperf-2.0.5-win32'
+  TESTPC:
+      hostname: "10.10.9.153"
+      username: "ubuntu"
+      password: "ranzure1"
+      alias: "testpc"
+  APP_SERVER:
+      hostname: "10.10.4.196"
+      username: "root"
+      password: 'mavenir'
+      alias: 'app_server'
+      application_ip: "172.16.80.12"
+  LOG_SERVER:
+      hostname: "10.10.6.161"
+      username: "ci-log"
+      password: 'mavenir'
+      alias: 'log_server'
+      log_path: '/home/ci-log/5g_logs/SA'
