@@ -26,7 +26,7 @@ Testline:
           worker_node:
             hostname: "10.10.6.37"
             username: "root"
-            password: 'mavenir'
+            password: 'cisco'
             alias: 'cu_worker'
             rat_type: 'NSA_TDD_SUB6_100MHZ'
             node_type: 'CUDU'
@@ -43,7 +43,7 @@ Testline:
         - alias: "DU"
           hostname: "10.10.11.27"
           username: "root"
-          password: "mavenir"
+          password: "cisco"
           container: "mvnr-mtcil1-appln-du-du01"
           container_name: "du01"
           helm_path: "du"
@@ -63,7 +63,7 @@ Testline:
           worker_node:
             hostname: "10.10.6.37"
             username: "root"
-            password: 'mavenir'
+            password: 'cisco'
             alias: 'du_worker'
             rat_type: 'NSA_TDD_SUB6_100MHZ'
             node_type: 'CUDU'
@@ -94,12 +94,12 @@ Testline:
   APP_SERVER:
       hostname: "10.10.4.196"
       username: "root"
-      password: 'mavenir'
+      password: 'cisco'
       alias: 'app_server'
       application_ip: "172.16.80.12"
   LOG_SERVER:
       hostname: "10.10.6.161"
       username: "ci-log"
-      password: 'mavenir'
+      password: 'cisco'
       alias: 'log_server'
       log_path: '/home/ci-log/5g_logs/SA'

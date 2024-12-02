@@ -3,11 +3,11 @@ Testline:
     - CU:
         hostname: "10.10.8.23"
         username: "root"
-        password: "mavenir"
+        password: "cisco"
         alias: "lte_CU"
-        #load_path: "/data/rajesh/loads/NSA/LTE_78_6_11/centos_7_8_xran-ENBCU-FDD-ENBCU-R_4_6_11_0-XRAN-v1.tar.gz"
-        load_path: "/data/rajesh/loads/NSA/LTE_4_6_20/centos_7_8_xran-ENBCU-FDD-ENBCU-R_4_6_20_0-XRAN-v1.tar.gz"
-        #load_path: "/data/rajesh/loads/NSA/LTE_13/centos_7_6_xran-ENBCU-FDD-ENBCU-R_4_5_13_0-XRAN-v1.tar.gz"
+        #load_path: "/data/rajesh/loads/NSA/LTE_78_6_11/centos_7_8_xran-L3-Platform-FDD-L3-Platform-R_4_6_11_0-XRAN-v1.tar.gz"
+        load_path: "/data/rajesh/loads/NSA/LTE_4_6_20/centos_7_8_xran-L3-Platform-FDD-L3-Platform-R_4_6_20_0-XRAN-v1.tar.gz"
+        #load_path: "/data/rajesh/loads/NSA/LTE_13/centos_7_6_xran-L3-Platform-FDD-L3-Platform-R_4_5_13_0-XRAN-v1.tar.gz"
         build_path: "/home/NSA_BLR/4_6_test"
         config:
           - fileName: "initial_data_xran_du.xml"
@@ -68,12 +68,12 @@ Testline:
       DU:
         - hostname: "172.16.61.212"
           username: "root"
-          password: "mavenir"
+          password: "cisco"
           alias: "lte_DU"
           proxy: "lte_CU"
-          #load_path: "/data/rajesh/loads/NSA/LTE_13/centos_7_6_xran_mnxt-ENBDU-FDD-ENBDU-R_4_5_13_0-XRAN-v1.tar.gz"
-          #load_path: "/data/rajesh/loads/NSA/LTE_78_6_11/centos_7_8_xran_mnxt-ENBDU-FDD-ENBDU-R_4_6_11_0-XRAN-v1.tar.gz"
-          load_path: "/data/rajesh/loads/NSA/LTE_4_6_20/centos_7_8_xran_mnxt-ENBDU-FDD-ENBDU-R_4_6_20_0-XRAN-v1.tar.gz"
+          #load_path: "/data/rajesh/loads/NSA/LTE_13/centos_7_6_xran_L2-Platform-ENBDU-FDD-ENBDU-R_4_5_13_0-XRAN-v1.tar.gz"
+          #load_path: "/data/rajesh/loads/NSA/LTE_78_6_11/centos_7_8_xran_L2-Platform-ENBDU-FDD-ENBDU-R_4_6_11_0-XRAN-v1.tar.gz"
+          load_path: "/data/rajesh/loads/NSA/LTE_4_6_20/centos_7_8_xran_L2-Platform-ENBDU-FDD-ENBDU-R_4_6_20_0-XRAN-v1.tar.gz"
           build_path: "/data/storage/NSA_BLR/4_6_test"
           config:
             - fileName: "du_init_unittest_data.xml"
@@ -95,7 +95,7 @@ Testline:
                   max-bandwidth-ul: 'MHZ_20'
                   max-bandwidth-dl: 'MHZ_20'
                   radio-type: 'FDD'
-                mavenir-duapp/DUConfig:
+                cisco-duapp/DUConfig:
                   duIpIfCp: '172.16.61.212'
                   duPortIfCp: '33333'
                   duIpIfUp: '172.16.61.212'

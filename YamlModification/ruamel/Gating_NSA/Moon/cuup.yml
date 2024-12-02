@@ -12,7 +12,7 @@
     global/mtcil/kafka_svc_fqdn: kafka-svc.mvnr-mtcil1-infra-mtcil-mtcil1.svc.cluster.local:9092
 - filename: cuup/config/mgmt/gnb_vs_config.json
   params: {}
-- filename: cuup/config/mgmt/mavenir_data_container.json
+- filename: cuup/config/mgmt/cisco_data_container.json
   params:
     data/0/ManagedElement/0/GNBCUUPFunction/0/EP_E1/0/attributes/localAddress/0/ipAddress: 172.17.45.5
     data/0/ManagedElement/0/GNBCUUPFunction/0/EP_E1/0/attributes/remoteAddress: 172.17.45.4
