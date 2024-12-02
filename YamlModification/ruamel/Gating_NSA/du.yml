@@ -34,7 +34,7 @@
     l1_pci_net_netattchdef/ipamsrangeend: 192.168.5.254
     l1_pci_net_netattchdef/ipamsubnet: 192.168.5.0/24
     nf/nfId: du01
-- filename: du/config/mgmt/mavenir_data_container.json
+- filename: du/config/mgmt/cisco_data_container.json
   params:
     data/0/ManagedElement/0/GNBDUFunction/0/BWP/0/attributes/numberOfRBs: 273
     data/0/ManagedElement/0/GNBDUFunction/0/BWP/0/attributes/subCarrierSpacing: 30

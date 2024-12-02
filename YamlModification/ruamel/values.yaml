@@ -1,4 +1,4 @@
-# Default values for vDU-mnxt.
+# Default values for vDU-L2-Platform.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -7,13 +7,13 @@ DU:
   hostaliases:
     ip1: 10.10.10.10
     hostnames1:
-     - cem.mavenir.com
+     - cem.cisco.com
     ip2: 127.0.0.1
     hostnames2:
-     - sdaas.mavenir.com
+     - sdaas.cisco.com
   image:
-    repository: harbor.mwp-mavenir.com/4g_ci_automation/mavenir/du
-    tag: mnxt-du-x86-ENBDU.R.4.7.15.0.v1
+    repository: harbor.mwp-cisco.com/4g_ci_automation/cisco/du
+    tag: L2-Platform-du-x86-ENBDU.R.4.7.15.0.v1
     pullPolicy: IfNotPresent
   resources:
     limits:
@@ -25,11 +25,11 @@ DU:
       memory: "16Gi"
       cpu: "24"
   fh_config:
-    MNXT_FH_IFACE_1: enp96s0f0
-    MNXT_FH_IFACE_2: enp96s0f1
-    MNXT_ORAN: ENABLE
-    MNXT_MP_VLAN: 1257
-    MNXT_CP_VLAN: 1258
+    L2-Platform_FH_IFACE_1: enp96s0f0
+    L2-Platform_FH_IFACE_2: enp96s0f1
+    L2-Platform_ORAN: ENABLE
+    L2-Platform_MP_VLAN: 1257
+    L2-Platform_CP_VLAN: 1258
     MH_MTU: 1600
   RRU_OPTION_60_TAG: "o-ran-ru2/MT"
 
@@ -73,10 +73,10 @@ PTP:
   hostaliases:
     ip: 10.10.10.10
     hostnames:
-     - cem.mavenir.com
+     - cem.cisco.com
   image:
-    repository: harbor.mwp-mavenir.com/4g_ci_automation/mavenir/du-ptp
-    tag: mnxt-du-x86-ENBDU.R.4.7.15.0.v1
+    repository: harbor.mwp-cisco.com/4g_ci_automation/cisco/du-ptp
+    tag: L2-Platform-du-x86-ENBDU.R.4.7.15.0.v1
     pullPolicy: IfNotPresent
   resources:
     limits:
@@ -90,7 +90,7 @@ PTP:
 nodeSelector:
   VDU_SETUP: wk0
 
-namespace: mnxt
+namespace: L2-Platform
 
 
 

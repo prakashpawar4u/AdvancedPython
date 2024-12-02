@@ -26,7 +26,7 @@
     du_mplane_netattchdef/master: enp94s0f0
     global/hub: 10.10.11.35:5000
     l1_pci_net_netattchdef/dpdk_resource: intel.com/l1_sriov_netD
-- filename: du/config/mgmt/mavenir_data_container.json
+- filename: du/config/mgmt/cisco_data_container.json
   params:
     data/0/ManagedElement/0/GNBDUFunction/0/EP_F1C/0/attributes/localAddress/0/ipAddress: 172.17.41.4
     data/0/ManagedElement/0/GNBDUFunction/0/EP_F1C/0/attributes/localAddress/0/vlanId: 275

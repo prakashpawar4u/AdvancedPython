@@ -48,7 +48,7 @@
     gnbvs/gnbCuCpConfig/0/tacSpecificConfig/0/plmnSpecificConfig/0/MCC: '111'
     gnbvs/gnbCuCpConfig/0/tacSpecificConfig/0/plmnSpecificConfig/0/MNC: '11'
     gnbvs/gnbCuCpConfig/0/tacSpecificConfig/0/tac: '1'
-- filename: cucp/config/mgmt/mavenir_data_container.json
+- filename: cucp/config/mgmt/cisco_data_container.json
   params:
     data/0/ManagedElement/0/GNBCUCPFunction/0/EP_E1/0/attributes/localAddress/0/ipAddress: 172.17.45.4
     data/0/ManagedElement/0/GNBCUCPFunction/0/EP_E1/0/attributes/remoteAddress: 172.17.45.5

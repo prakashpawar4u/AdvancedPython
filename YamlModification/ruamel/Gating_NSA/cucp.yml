@@ -50,7 +50,7 @@
     gnbvs/gnbCuCpConfig/0/tacSpecificConfig/0/plmnSpecificConfig/0/MNC: '22'
     gnbvs/gnbCuCpConfig/0/tacSpecificConfig/0/plmnSpecificConfig/0/sNSSAI/0: 50529801
     gnbvs/gnbCuCpConfig/0/tacSpecificConfig/0/plmnSpecificConfig/0/sNSSAI/1: 50529802
-- filename: cucp/config/mgmt/mavenir_data_container.json
+- filename: cucp/config/mgmt/cisco_data_container.json
   params:
     data/0/EUtraNetwork/0/ExternalENBFunction/0/ExternalEUtranCellFDD/0/attributes/eNBId: 202
     data/0/EUtraNetwork/0/ExternalENBFunction/0/ExternalEUtranCellFDD/0/attributes/earfcnDL: 17999
