@@ -23,8 +23,8 @@ v3 = v1 + v2
 print(v3.x)
 print(v3.y)
 
-#calling V3
+#calling V3 __call__ method will be invoked
 v3()
 
-print(v3)
-print(len(v3))
+print(v3) #__repr method will be invoked
+print(len(v3)) #__len__ method will be invoked
