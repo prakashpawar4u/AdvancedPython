@@ -6,11 +6,11 @@
 #         #instance variable
 #         self.A = "Yuan"
 #         self.__B = "Private"
-#
+
 #     def printName(self):
 #         print(self.A)
 #         print(self.__B)
-#
+
 # p = Person()
 # #p.printName()
 # print(p.A)
@@ -77,7 +77,6 @@
 # #isinstance
 # print(isinstance(emp1, Person))#True
 # print(isinstance(emp, Employee))#False
-
 
 
 # Python example to show that base
@@ -238,4 +237,3 @@
 # r = Rectangle(10, 20)
 #
 # print('area:',r.area())
-
