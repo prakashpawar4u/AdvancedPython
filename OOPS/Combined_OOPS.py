@@ -1,15 +1,17 @@
-# class Person:
-#     #Class variable
-#     # Hidden member of MyClass
-#     __hiddenVariable = 10
-#     def __init__(self):
-#         #instance variable
-#         self.A = "Yuan"
-#         self.__B = "Private"
+class Person:
+    # Class variable
+    # Hidden member of MyClass
+    __hiddenVariable = 10
 
-#     def printName(self):
-#         print(self.A)
-#         print(self.__B)
+    def __init__(self):
+        # instance variable
+        self.A = "Yuan"
+        self.__B = "Private"
+
+    def printName(self):
+        print(self.A)
+        print(self.__B)
+
 
 # p = Person()
 # #p.printName()
