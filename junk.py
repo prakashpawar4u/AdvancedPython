@@ -1,26 +1,69 @@
-def lastOccurence(l, x):
-    low = 0
-    high = len(l)-1
+def mergeSort(l1, l2):
+    res = []
+    m = len(l1)
+    n = len(l2)
+    i , j = 0, 0
 
-    while low <= high:
-        mid = (low+high)//2
-
-        if l[mid] < x:
-            low = mid + 1
-        
-        elif l[mid] > x:
-            high = mid -1
-        
+    while i < m and j < n:
+        if l1[i] < l2[j]:
+            res.append(l1[i])
+            i = i + 1
         else:
-            if mid == len(l) -1 or l[mid] != l[mid+1]:
-                return mid
-            else:
-                low = mid +1
-    return -1
+            res.append(l2[j]) 
+            j = j+1
+    while i<m:
+        res.append(l1[i])
+        i = i + 1
+    while j< n:
+        res.append(l2[j])
+        j = j + 1      
+    return res     
+l1 = [10,15]
+l2 = [5,6,6,30,40]
+print(mergeSort(l1,l2))
 
-l = [5, 10, 10, 10, 10, 20, 20]
 
-print(lastOccurence(l, 20))
+# def selectionSort(l):
+#     n = len(l)
+#     for i in range(n):
+#         min_ind = i
+#         for j in range(i + 1, n):
+#             if l[j] < l[min_ind]:
+#                 print(f"condition satisfies {j}")
+#                 min_ind = j
+#         # l[min_ind], l[i] = l[i], l[min_ind]
+
+#         if min_ind != i:
+            
+#             l[min_ind], l[i] = l[i], l[min_ind]
+#     return l
+
+# l = [20,5,40,60,30,80]
+# selectionSort(l)
+# print(l)
+# def lastOccurence(l, x):
+#     low = 0
+#     high = len(l)-1
+
+#     while low <= high:
+#         mid = (low+high)//2
+
+#         if l[mid] < x:
+#             low = mid + 1
+        
+#         elif l[mid] > x:
+#             high = mid -1
+        
+#         else:
+#             if mid == len(l) -1 or l[mid] != l[mid+1]:
+#                 return mid
+#             else:
+#                 low = mid +1
+#     return -1
+
+# l = [5, 10, 10, 10, 10, 20, 20]
+
+# print(lastOccurence(l, 20))
 
 # def firstOccurence(l, n, x):
 #     low = 0
