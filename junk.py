@@ -1,26 +1,115 @@
-def mergeSort(l1, l2):
-    res = []
-    m = len(l1)
-    n = len(l2)
-    i , j = 0, 0
+from typing import List
+def maxSubArray(nums: List[int]) -> int:
+        maxSub = nums[0]
+        curSum = 0
 
-    while i < m and j < n:
-        if l1[i] < l2[j]:
-            res.append(l1[i])
-            i = i + 1
-        else:
-            res.append(l2[j]) 
-            j = j+1
-    while i<m:
-        res.append(l1[i])
-        i = i + 1
-    while j< n:
-        res.append(l2[j])
-        j = j + 1      
-    return res     
-l1 = [10,15]
-l2 = [5,6,6,30,40]
-print(mergeSort(l1,l2))
+        for n in nums:
+            if curSum < 0:
+                curSum = 0
+            curSum +=n 
+            maxSub = max(maxSub, curSum)
+        return maxSub
+
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+maxSubArray(nums)
+
+
+# def printUnion(a,b):
+#     i = j = 0 
+#     while(i<len(a) and j<len(b)):
+#         if (i>0 and a[i]==a[i-1]):
+#             i = i + 1
+#         elif (j>0 and b[j]==b[j-1]):
+#             j = j + 1
+#         elif(a[i] < b[j]):
+#             print(a[i], end=" ")
+#             i = i+1
+#         elif (a[i] > b[j]):
+#             print(b[j], end=" ")
+#             j = j+1
+#         else:
+#             print(a[i], end=" ")
+#             i = i+1
+#             j = j+1
+#     while (i<len(a)):
+#         if(i>0 and a[i]!=a[i-1]):
+#             print(a[i], end=" ")
+#         i = i+1
+#     while (j <len(b)):
+#         if (j > 0 and b[j]!= b[j-1]):
+#             print(b[j], end=" ")
+#         j = j+1           
+
+
+# a = [3,5,8]
+# b = [2,8,9,10,15]
+# printUnion(a,b)
+# def merge(a, low, mid, high):
+#     left = a[low:mid + 1]
+#     right = a[mid + 1:high + 1]
+
+#     i = j = 0
+#     k = low
+
+#     while i < len(left) and j < len(right):
+
+#         if left[i] < right[j]:
+#             a[k] = left[i]
+
+#             k += 1
+#             i += 1
+#         else:
+#             a[k] = right[j]
+#             k += 1
+#             j += 1
+
+#     while i < len(left):
+#         a[k] = left[i]
+#         i += 1
+#         k += 1
+
+#     while j < len(right):
+#         a[k] = right[j]
+#         j += 1
+#         k += 1
+
+
+# def mergeSort(arr, l, r):
+#     if r > l:
+#         m = (r + l) // 2
+#         mergeSort(arr, l, m)
+#         mergeSort(arr, m + 1, r)
+#         merge(arr, l, m, r)
+
+
+# arr = [10, 5, 30, 15, 7]
+# print(f"Before Merge Sort: {arr}")
+
+# mergeSort(arr, 0, 4)
+# print(*arr)
+# def mergeSort(l1, l2):
+#     res = []
+#     m = len(l1)
+#     n = len(l2)
+#     i , j = 0, 0
+
+#     while i < m and j < n:
+#         if l1[i] < l2[j]:
+#             res.append(l1[i])
+#             i = i + 1
+#         else:
+#             res.append(l2[j]) 
+#             j = j+1
+#     while i<m:
+#         res.append(l1[i])
+#         i = i + 1
+#     while j< n:
+#         res.append(l2[j])
+#         j = j + 1      
+#     return res     
+# l1 = [10,15]
+# l2 = [5,6,6,30,40]
+# print(mergeSort(l1,l2))
 
 
 # def selectionSort(l):
