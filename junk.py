@@ -1,30 +1,46 @@
 from typing import List
 
 
-def nextGreaterElements(nums):
+def nextGretaerElem(nums):
+    stack = []
     n = len(nums)
-    result = [-1] * n  # Initialize the result list with -1's
-    stack = []  # This will store the indices of elements for which we are finding the next greater element
-    
-    # Traverse the array twice to simulate circular nature
-    for i in range(2 * n):
-        # Element index in the range [0, n-1]
-        num = nums[i % n]
+    result = [-1] * n
+
+    for i in range(n):
+        while stack and nums[stack[-1]] < nums[i]:
+            result[stack.pop()]=nums[i]
         
-        # While the stack is not empty and the current element is greater than the element at the index in the stack
-        while stack and nums[stack[-1]] < num:
-            index = stack.pop()  # Pop the index of the element from the stack
-            result[index] = num  # Update the result with the next greater element
-        
-        # Push the current index to the stack (only for the first iteration for each element)
-        if i < n:
-            stack.append(i)
-    
+        stack.append(i)
     return result
 
-# Example usage
 nums = [2, 1, 2, 4, 3]
-print(nextGreaterElements(nums))  # Output: [4, 2, 4, -1, -1]
+print(nextGretaerElem(nums))  # Output: [4, 2, 4, -1, -1]
+
+
+# def nextGreaterElements(nums):
+#     n = len(nums)
+#     result = [-1] * n  # Initialize the result list with -1's
+#     stack = []  # This will store the indices of elements for which we are finding the next greater element
+    
+#     # Traverse the array twice to simulate circular nature
+#     for i in range(2 * n):
+#         # Element index in the range [0, n-1]
+#         num = nums[i % n]
+        
+#         # While the stack is not empty and the current element is greater than the element at the index in the stack
+#         while stack and nums[stack[-1]] < num:
+#             index = stack.pop()  # Pop the index of the element from the stack
+#             result[index] = num  # Update the result with the next greater element
+        
+#         # Push the current index to the stack (only for the first iteration for each element)
+#         if i < n:
+#             stack.append(i)
+    
+#     return result
+
+# # Example usage
+# nums = [2, 1, 2, 4, 3]
+# print(nextGreaterElements(nums))  # Output: [4, 2, 4, -1, -1]
 
 # def maxSubArray(nums: List[int]) -> int:
 #         maxSub = nums[0]
