@@ -1,20 +1,151 @@
 from typing import List
+def lastOccur(l, x):
+
+    low = 0
+    high = len(l) - 1
+
+    while low <= high:
+
+        mid = (low + high) // 2
+
+        if l[mid] < x:
+            low = mid + 1
+
+        elif l[mid] > x:
+            high = mid - 1
+
+        else:
+
+            if mid == len(l) - 1 or l[mid] != l[mid + 1]:
+                return mid
+            else:
+                low = mid + 1
+    return -1
 
 
-def nextGretaerElem(nums):
-    stack = []
-    n = len(nums)
-    result = [-1] * n
+l = [5, 10, 10, 10, 10, 20, 20]
 
-    for i in range(n):
-        while stack and nums[stack[-1]] < nums[i]:
-            result[stack.pop()]=nums[i]
+print(10,lastOccur(l, 10))
+# def hoarsePartition(arr, l, h):
+#     pivot = arr[l]
+
+#     i = l - 1
+#     j = h + 1
+
+#     while True:
+
+#         i = i + 1
+#         while arr[i] < pivot:
+#             i = i + 1
+
+#         j = j - 1
+#         while arr[j] > pivot:
+#             j = j - 1
+
+#         if i >= j:
+#             return j
+
+#         arr[i], arr[j] = arr[j], arr[i]
+
+
+# def qSort(arr, l, h):
+#     if l < h:
+#         p = hoarsePartition(arr, l, h)
+#         qSort(arr, l, p)
+#         qSort(arr, p + 1, h)
+
+
+# arr = [8, 4, 7, 9, 3, 10, 5]
+
+# qSort(arr, 0, 6)
+
+# print(*arr)
+
+# def lomutoPartition(arr, l ,h):
+#     pivot = arr[h]
+#     i = l -1 
+#     for j in range(l, h):
+#         if arr[j] <= pivot:
+#             i = i + 1
+#             arr[i], arr[j] = arr[j], arr[i]
+#     #print(arr, "value of i: ", i)
+#     arr[i+1], arr[h] = arr[h], arr[i +1]
+#     return i + 1
+
+# arr = [10, 80, 30, 90, 50, 70]
+# lomutoPartition(arr, 0, 5)
+# print(*arr)
+
+
+# def mergeSubarray(a, low, mid, high):
+#     left = a[low:mid+1]
+#     right = a[mid+1:high + 1]
+
+#     i = j = 0
+#     k = low
+
+#     while i < len(left) and j < len(right):
+
+#         if left[i] < right[j]:
+#             a[k] = left[i]
+
+#             k += 1
+#             i += 1
+#         else:
+#             a[k] = right[j]
+#             k += 1
+#             j += 1
+
+#     while i < len(left):
+#         a[k] = left[i]
+#         i += 1
+#         k += 1
+
+#     while j < len(right):
+#         a[k] = right[j]
+#         j += 1
+#         k += 1
+
+# a = [10,15,20,40,8,11] 
+# low = 0
+# high = len(a)
+
+# mid = (low + high) //2
+# sor = mergeSubarray(a, low, mid, high)
+# print(f"Sorted array is :{a}")
+# def insertionSort(l):
+#     for i in range(1, len(l)):
+#         x = l[i]
+#         j = i-1
+
+#         while j >=0 and x < l[j]:
+#             l[j+1] = l[j]
+#             j = j-1
         
-        stack.append(i)
-    return result
+#         l[j+1] = x
 
-nums = [2, 1, 2, 4, 3]
-print(nextGretaerElem(nums))  # Output: [4, 2, 4, -1, -1]
+# l = [20, 5, 40, 60, 10, 30]
+# print(f"Before sorting: {l}")
+
+# insertionSort(l)
+# print(*l)
+
+# print(f"After sorting: {l}")
+
+# def nextGretaerElem(nums):
+#     stack = []
+#     n = len(nums)
+#     result = [-1] * n
+
+#     for i in range(n):
+#         while stack and nums[stack[-1]] < nums[i]:
+#             result[stack.pop()]=nums[i]
+        
+#         stack.append(i)
+#     return result
+
+# nums = [2, 1, 2, 4, 3]
+# print(nextGretaerElem(nums))  # Output: [4, 2, 4, -1, -1]
 
 
 # def nextGreaterElements(nums):
