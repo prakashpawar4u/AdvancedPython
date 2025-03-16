@@ -1,26 +1,356 @@
-def lastOccurence(l, x):
-    low = 0
-    high = len(l)-1
+from typing import List
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        hashMap = {}
+        for i, n in enumerate(nums):
+            diff = target - n
+            if diff in hashMap:
+                return [hashMap[diff], i]
+            hashMap[n] = i
+        return []
 
-    while low <= high:
-        mid = (low+high)//2
+# Driver code
+if __name__ == "__main__":
+    solution = Solution()
+    
+    # Test case 1
+    nums1 = [2, 7, 11, 15]
+    target1 = 9
+    print(solution.twoSum(nums1, target1))  # Output: [0, 1]
+    
+# def lastOccur(l, x):
 
-        if l[mid] < x:
-            low = mid + 1
+#     low = 0
+#     high = len(l) - 1
+
+#     while low <= high:
+
+#         mid = (low + high) // 2
+
+#         if l[mid] < x:
+#             low = mid + 1
+
+#         elif l[mid] > x:
+#             high = mid - 1
+
+#         else:
+
+#             if mid == len(l) - 1 or l[mid] != l[mid + 1]:
+#                 return mid
+#             else:
+#                 low = mid + 1
+#     return -1
+
+
+# l = [5, 10, 10, 10, 10, 20, 20]
+
+# print(10,lastOccur(l, 10))
+# def hoarsePartition(arr, l, h):
+#     pivot = arr[l]
+
+#     i = l - 1
+#     j = h + 1
+
+#     while True:
+
+#         i = i + 1
+#         while arr[i] < pivot:
+#             i = i + 1
+
+#         j = j - 1
+#         while arr[j] > pivot:
+#             j = j - 1
+
+#         if i >= j:
+#             return j
+
+#         arr[i], arr[j] = arr[j], arr[i]
+
+
+# def qSort(arr, l, h):
+#     if l < h:
+#         p = hoarsePartition(arr, l, h)
+#         qSort(arr, l, p)
+#         qSort(arr, p + 1, h)
+
+
+# arr = [8, 4, 7, 9, 3, 10, 5]
+
+# qSort(arr, 0, 6)
+
+# print(*arr)
+
+# def lomutoPartition(arr, l ,h):
+#     pivot = arr[h]
+#     i = l -1 
+#     for j in range(l, h):
+#         if arr[j] <= pivot:
+#             i = i + 1
+#             arr[i], arr[j] = arr[j], arr[i]
+#     #print(arr, "value of i: ", i)
+#     arr[i+1], arr[h] = arr[h], arr[i +1]
+#     return i + 1
+
+# arr = [10, 80, 30, 90, 50, 70]
+# lomutoPartition(arr, 0, 5)
+# print(*arr)
+
+
+# def mergeSubarray(a, low, mid, high):
+#     left = a[low:mid+1]
+#     right = a[mid+1:high + 1]
+
+#     i = j = 0
+#     k = low
+
+#     while i < len(left) and j < len(right):
+
+#         if left[i] < right[j]:
+#             a[k] = left[i]
+
+#             k += 1
+#             i += 1
+#         else:
+#             a[k] = right[j]
+#             k += 1
+#             j += 1
+
+#     while i < len(left):
+#         a[k] = left[i]
+#         i += 1
+#         k += 1
+
+#     while j < len(right):
+#         a[k] = right[j]
+#         j += 1
+#         k += 1
+
+# a = [10,15,20,40,8,11] 
+# low = 0
+# high = len(a)
+
+# mid = (low + high) //2
+# sor = mergeSubarray(a, low, mid, high)
+# print(f"Sorted array is :{a}")
+# def insertionSort(l):
+#     for i in range(1, len(l)):
+#         x = l[i]
+#         j = i-1
+
+#         while j >=0 and x < l[j]:
+#             l[j+1] = l[j]
+#             j = j-1
         
-        elif l[mid] > x:
-            high = mid -1
+#         l[j+1] = x
+
+# l = [20, 5, 40, 60, 10, 30]
+# print(f"Before sorting: {l}")
+
+# insertionSort(l)
+# print(*l)
+
+# print(f"After sorting: {l}")
+
+# def nextGretaerElem(nums):
+#     stack = []
+#     n = len(nums)
+#     result = [-1] * n
+
+#     for i in range(n):
+#         while stack and nums[stack[-1]] < nums[i]:
+#             result[stack.pop()]=nums[i]
         
-        else:
-            if mid == len(l) -1 or l[mid] != l[mid+1]:
-                return mid
-            else:
-                low = mid +1
-    return -1
+#         stack.append(i)
+#     return result
 
-l = [5, 10, 10, 10, 10, 20, 20]
+# nums = [2, 1, 2, 4, 3]
+# print(nextGretaerElem(nums))  # Output: [4, 2, 4, -1, -1]
 
-print(lastOccurence(l, 20))
+
+# def nextGreaterElements(nums):
+#     n = len(nums)
+#     result = [-1] * n  # Initialize the result list with -1's
+#     stack = []  # This will store the indices of elements for which we are finding the next greater element
+    
+#     # Traverse the array twice to simulate circular nature
+#     for i in range(2 * n):
+#         # Element index in the range [0, n-1]
+#         num = nums[i % n]
+        
+#         # While the stack is not empty and the current element is greater than the element at the index in the stack
+#         while stack and nums[stack[-1]] < num:
+#             index = stack.pop()  # Pop the index of the element from the stack
+#             result[index] = num  # Update the result with the next greater element
+        
+#         # Push the current index to the stack (only for the first iteration for each element)
+#         if i < n:
+#             stack.append(i)
+    
+#     return result
+
+# # Example usage
+# nums = [2, 1, 2, 4, 3]
+# print(nextGreaterElements(nums))  # Output: [4, 2, 4, -1, -1]
+
+# def maxSubArray(nums: List[int]) -> int:
+#         maxSub = nums[0]
+#         curSum = 0
+
+#         for n in nums:
+#             if curSum < 0:
+#                 curSum = 0
+#             curSum +=n 
+#             maxSub = max(maxSub, curSum)
+#         return maxSub
+
+# nums = [-2,1,-3,4,-1,2,1,-5,4]
+# maxSubArray(nums)
+
+
+# def printUnion(a,b):
+#     i = j = 0 
+#     while(i<len(a) and j<len(b)):
+#         if (i>0 and a[i]==a[i-1]):
+#             i = i + 1
+#         elif (j>0 and b[j]==b[j-1]):
+#             j = j + 1
+#         elif(a[i] < b[j]):
+#             print(a[i], end=" ")
+#             i = i+1
+#         elif (a[i] > b[j]):
+#             print(b[j], end=" ")
+#             j = j+1
+#         else:
+#             print(a[i], end=" ")
+#             i = i+1
+#             j = j+1
+#     while (i<len(a)):
+#         if(i>0 and a[i]!=a[i-1]):
+#             print(a[i], end=" ")
+#         i = i+1
+#     while (j <len(b)):
+#         if (j > 0 and b[j]!= b[j-1]):
+#             print(b[j], end=" ")
+#         j = j+1           
+
+
+# a = [3,5,8]
+# b = [2,8,9,10,15]
+# printUnion(a,b)
+# def merge(a, low, mid, high):
+#     left = a[low:mid + 1]
+#     right = a[mid + 1:high + 1]
+
+#     i = j = 0
+#     k = low
+
+#     while i < len(left) and j < len(right):
+
+#         if left[i] < right[j]:
+#             a[k] = left[i]
+
+#             k += 1
+#             i += 1
+#         else:
+#             a[k] = right[j]
+#             k += 1
+#             j += 1
+
+#     while i < len(left):
+#         a[k] = left[i]
+#         i += 1
+#         k += 1
+
+#     while j < len(right):
+#         a[k] = right[j]
+#         j += 1
+#         k += 1
+
+
+# def mergeSort(arr, l, r):
+#     if r > l:
+#         m = (r + l) // 2
+#         mergeSort(arr, l, m)
+#         mergeSort(arr, m + 1, r)
+#         merge(arr, l, m, r)
+
+
+# arr = [10, 5, 30, 15, 7]
+# print(f"Before Merge Sort: {arr}")
+
+# mergeSort(arr, 0, 4)
+# print(*arr)
+# def mergeSort(l1, l2):
+#     res = []
+#     m = len(l1)
+#     n = len(l2)
+#     i , j = 0, 0
+
+#     while i < m and j < n:
+#         if l1[i] < l2[j]:
+#             res.append(l1[i])
+#             i = i + 1
+#         else:
+#             res.append(l2[j]) 
+#             j = j+1
+#     while i<m:
+#         res.append(l1[i])
+#         i = i + 1
+#     while j< n:
+#         res.append(l2[j])
+#         j = j + 1      
+#     return res     
+# l1 = [10,15]
+# l2 = [5,6,6,30,40]
+# print(mergeSort(l1,l2))
+
+
+# def selectionSort(l):
+#     n = len(l)
+#     for i in range(n):
+#         min_ind = i
+#         for j in range(i + 1, n):
+#             if l[j] < l[min_ind]:
+#                 print(f"condition satisfies {j}")
+#                 min_ind = j
+#         # l[min_ind], l[i] = l[i], l[min_ind]
+
+#         if min_ind != i:
+            
+#             l[min_ind], l[i] = l[i], l[min_ind]
+#     return l
+
+# l = [20,5,40,60,30,80]
+# selectionSort(l)
+# print(l)
+# def lastOccurence(l, x):
+#     low = 0
+#     high = len(l)-1
+
+#     while low <= high:
+#         mid = (low+high)//2
+
+#         if l[mid] < x:
+#             low = mid + 1
+        
+#         elif l[mid] > x:
+#             high = mid -1
+        
+#         else:
+#             if mid == len(l) -1 or l[mid] != l[mid+1]:
+#                 return mid
+#             else:
+#                 low = mid +1
+#     return -1
+
+# l = [5, 10, 10, 10, 10, 20, 20]
+
+# print(lastOccurence(l, 20))
 
 # def firstOccurence(l, n, x):
 #     low = 0
