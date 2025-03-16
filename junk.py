@@ -1,28 +1,149 @@
 from typing import List
-class Solution(object):
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-        hashMap = {}
-        for i, n in enumerate(nums):
-            diff = target - n
-            if diff in hashMap:
-                return [hashMap[diff], i]
-            hashMap[n] = i
-        return []
 
-# Driver code
-if __name__ == "__main__":
-    solution = Solution()
-    
-    # Test case 1
-    nums1 = [2, 7, 11, 15]
-    target1 = 9
-    print(solution.twoSum(nums1, target1))  # Output: [0, 1]
-    
+
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0 or (x % 10 == 0 and x != 0):
+            return False
+        reversed_half = 0
+
+        while x > reversed_half:
+            reversed_half = reversed_half * 10 + x % 10
+            x //= 10
+
+        return x == reversed_half or x == reversed_half // 10
+
+
+# def maxArea(height):
+#     res = 0
+#     l, r = 0, len(height) - 1  # Left and Right pointers
+
+#     while l < r:
+#         area = (r - l) * min(height[l], height[r])  # Corrected formula for area
+#         res = max(res, area)  # Update the maximum area if needed
+
+#         if height[l] < height[r]:  # Move the pointer pointing to the smaller height
+#             l += 1
+#         else:
+#             r -= 1
+
+#     return res
+
+
+# height = [1, 7, 2, 5, 4, 7, 3, 6]
+# print(maxArea(height))
+# import time
+# import threading
+
+# # Simulate Testlines with status: Unlocked/Locked/Maintenance
+# testlines = [
+#     {"testline_id": "TL1", "status": "Unlocked"},
+#     {"testline_id": "TL2", "status": "Unlocked"},
+#     {"testline_id": "TL3", "status": "Unlocked"},
+# ]
+
+# # Simulating a list of jobs with priority (highest to lowest priority)
+# jobs = [
+#     {"job_name": "job1", "priority": 3},
+#     {"job_name": "job2", "priority": 1},
+#     {"job_name": "job3", "priority": 5},
+#     {"job_name": "job4", "priority": 2},
+#     {"job_name": "job5", "priority": 4},
+# ]
+
+# # Displaying the jobs before sorting
+# print("Jobs before sorting:")
+# for job in jobs:
+#     print(f"Job Name: {job['job_name']}, Priority: {job['priority']}")
+
+# # Sorting jobs based on priority (Highest to Lowest)
+# sorted_jobs = sorted(jobs, key=lambda x: x["priority"], reverse=True)
+
+
+# # Simulating job execution and locking testline
+# def execute_job(job, testline):
+#     print(f"Executing job '{job['job_name']}' on {testline['testline_id']}.")
+#     time.sleep(3)  # Simulate job execution time
+#     print(
+#         f"Job '{job['job_name']}' executed on {testline['testline_id']} successfully."
+#     )
+
+#     # Mark testline as unlocked after job execution
+#     testline["status"] = "Unlocked"
+#     print(f"Testline {testline['testline_id']} is now Unlocked.")
+
+
+# # Assign jobs to available testlines and run them on separate threads
+# def assign_jobs_to_testlines():
+#     job_index = 0  # To track which job we are assigning
+
+#     def assign_job_to_testline(job, testline):
+#         # Assign the highest priority job to the available testline
+#         testline["status"] = "Locked"  # Lock the testline
+#         print(
+#             f"Assigning job '{job['job_name']}' to testline {testline['testline_id']}."
+#         )
+#         execute_job(job, testline)  # Simulate job execution
+
+#     # Start the threads
+#     threads = []
+#     while job_index < len(sorted_jobs):
+#         # Check for an available (Unlocked) testline
+#         available_testline = None
+#         for testline in testlines:
+#             if testline["status"] == "Unlocked":
+#                 available_testline = testline
+#                 break
+
+#         if available_testline:
+#             # Assign the highest priority job to the available testline
+#             job = sorted_jobs[job_index]
+#             job_index += 1
+
+#             # Create a thread to execute the job on the available testline
+#             thread = threading.Thread(
+#                 target=assign_job_to_testline, args=(job, available_testline)
+#             )
+#             threads.append(thread)
+#             thread.start()
+#         else:
+#             print("No available testline. Waiting for a testline to become available.")
+#             time.sleep(2)  # Wait before checking for available testlines again
+
+#     # Wait for all threads to complete
+#     for thread in threads:
+#         thread.join()
+
+
+# # Start the process of assigning jobs to testlines
+# if __name__ == "__main__":
+#     assign_jobs_to_testlines()
+
+
+# class Solution(object):
+#     def twoSum(self, nums, target):
+#         """
+#         :type nums: List[int]
+#         :type target: int
+#         :rtype: List[int]
+#         """
+#         hashMap = {}
+#         for i, n in enumerate(nums):
+#             diff = target - n
+#             if diff in hashMap:
+#                 return [hashMap[diff], i]
+#             hashMap[n] = i
+#         return []
+
+# # Driver code
+# if __name__ == "__main__":
+#     solution = Solution()
+
+#     # Test case 1
+#     nums1 = [2, 7, 11, 15]
+#     target1 = 9
+#     print(solution.twoSum(nums1, target1))  # Output: [0, 1]
+
 # def lastOccur(l, x):
 
 #     low = 0
@@ -87,7 +208,7 @@ if __name__ == "__main__":
 
 # def lomutoPartition(arr, l ,h):
 #     pivot = arr[h]
-#     i = l -1 
+#     i = l -1
 #     for j in range(l, h):
 #         if arr[j] <= pivot:
 #             i = i + 1
@@ -130,7 +251,7 @@ if __name__ == "__main__":
 #         j += 1
 #         k += 1
 
-# a = [10,15,20,40,8,11] 
+# a = [10,15,20,40,8,11]
 # low = 0
 # high = len(a)
 
@@ -145,7 +266,7 @@ if __name__ == "__main__":
 #         while j >=0 and x < l[j]:
 #             l[j+1] = l[j]
 #             j = j-1
-        
+
 #         l[j+1] = x
 
 # l = [20, 5, 40, 60, 10, 30]
@@ -164,7 +285,7 @@ if __name__ == "__main__":
 #     for i in range(n):
 #         while stack and nums[stack[-1]] < nums[i]:
 #             result[stack.pop()]=nums[i]
-        
+
 #         stack.append(i)
 #     return result
 
@@ -176,21 +297,21 @@ if __name__ == "__main__":
 #     n = len(nums)
 #     result = [-1] * n  # Initialize the result list with -1's
 #     stack = []  # This will store the indices of elements for which we are finding the next greater element
-    
+
 #     # Traverse the array twice to simulate circular nature
 #     for i in range(2 * n):
 #         # Element index in the range [0, n-1]
 #         num = nums[i % n]
-        
+
 #         # While the stack is not empty and the current element is greater than the element at the index in the stack
 #         while stack and nums[stack[-1]] < num:
 #             index = stack.pop()  # Pop the index of the element from the stack
 #             result[index] = num  # Update the result with the next greater element
-        
+
 #         # Push the current index to the stack (only for the first iteration for each element)
 #         if i < n:
 #             stack.append(i)
-    
+
 #     return result
 
 # # Example usage
@@ -204,7 +325,7 @@ if __name__ == "__main__":
 #         for n in nums:
 #             if curSum < 0:
 #                 curSum = 0
-#             curSum +=n 
+#             curSum +=n
 #             maxSub = max(maxSub, curSum)
 #         return maxSub
 
@@ -213,7 +334,7 @@ if __name__ == "__main__":
 
 
 # def printUnion(a,b):
-#     i = j = 0 
+#     i = j = 0
 #     while(i<len(a) and j<len(b)):
 #         if (i>0 and a[i]==a[i-1]):
 #             i = i + 1
@@ -236,7 +357,7 @@ if __name__ == "__main__":
 #     while (j <len(b)):
 #         if (j > 0 and b[j]!= b[j-1]):
 #             print(b[j], end=" ")
-#         j = j+1           
+#         j = j+1
 
 
 # a = [3,5,8]
@@ -296,15 +417,15 @@ if __name__ == "__main__":
 #             res.append(l1[i])
 #             i = i + 1
 #         else:
-#             res.append(l2[j]) 
+#             res.append(l2[j])
 #             j = j+1
 #     while i<m:
 #         res.append(l1[i])
 #         i = i + 1
 #     while j< n:
 #         res.append(l2[j])
-#         j = j + 1      
-#     return res     
+#         j = j + 1
+#     return res
 # l1 = [10,15]
 # l2 = [5,6,6,30,40]
 # print(mergeSort(l1,l2))
@@ -321,7 +442,7 @@ if __name__ == "__main__":
 #         # l[min_ind], l[i] = l[i], l[min_ind]
 
 #         if min_ind != i:
-            
+
 #             l[min_ind], l[i] = l[i], l[min_ind]
 #     return l
 
@@ -337,10 +458,10 @@ if __name__ == "__main__":
 
 #         if l[mid] < x:
 #             low = mid + 1
-        
+
 #         elif l[mid] > x:
 #             high = mid -1
-        
+
 #         else:
 #             if mid == len(l) -1 or l[mid] != l[mid+1]:
 #                 return mid
@@ -374,8 +495,8 @@ if __name__ == "__main__":
 # print(firstOccurence(arr,len(arr),x))
 # def bSearch(l, key, low, high):
 #     if low > high:
-#         return -l 
-    
+#         return -l
+
 #     mid = (low + high)//2
 #     if l[mid] == key:
 #         return mid
@@ -524,26 +645,24 @@ if __name__ == "__main__":
 #     def reverseList(self, curr, prev= None):
 #         if curr == None:
 #             return prev
-        
+
 #         next = curr.next
 #         curr.next = prev
- 
+
 #         #Recursively reverse the rest of the list
 #         return self.reverseList(next, curr)
-        
+
 #     def printlist(self):
 #         curr = self.head
 #         while curr:
 #             print(curr.key, end=" ->")
 #             curr = curr.next
 #         print("None")
-    
+
 
 #     def reverse(self):
 #         # Start the reversal process from the head of the list
 #         self.head = self.reverseList(self.head)
-
-
 
 
 # # Create a LinkedList
@@ -562,8 +681,3 @@ if __name__ == "__main__":
 # ll.printlist()
 # ll.reverse()
 # ll.printlist()
-    
-
-
-
-            
