@@ -1,31 +1,55 @@
 from typing import List
-def lastOccur(l, x):
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        hashMap = {}
+        for i, n in enumerate(nums):
+            diff = target - n
+            if diff in hashMap:
+                return [hashMap[diff], i]
+            hashMap[n] = i
+        return []
 
-    low = 0
-    high = len(l) - 1
+# Driver code
+if __name__ == "__main__":
+    solution = Solution()
+    
+    # Test case 1
+    nums1 = [2, 7, 11, 15]
+    target1 = 9
+    print(solution.twoSum(nums1, target1))  # Output: [0, 1]
+    
+# def lastOccur(l, x):
 
-    while low <= high:
+#     low = 0
+#     high = len(l) - 1
 
-        mid = (low + high) // 2
+#     while low <= high:
 
-        if l[mid] < x:
-            low = mid + 1
+#         mid = (low + high) // 2
 
-        elif l[mid] > x:
-            high = mid - 1
+#         if l[mid] < x:
+#             low = mid + 1
 
-        else:
+#         elif l[mid] > x:
+#             high = mid - 1
 
-            if mid == len(l) - 1 or l[mid] != l[mid + 1]:
-                return mid
-            else:
-                low = mid + 1
-    return -1
+#         else:
+
+#             if mid == len(l) - 1 or l[mid] != l[mid + 1]:
+#                 return mid
+#             else:
+#                 low = mid + 1
+#     return -1
 
 
-l = [5, 10, 10, 10, 10, 20, 20]
+# l = [5, 10, 10, 10, 10, 20, 20]
 
-print(10,lastOccur(l, 10))
+# print(10,lastOccur(l, 10))
 # def hoarsePartition(arr, l, h):
 #     pivot = arr[l]
 
