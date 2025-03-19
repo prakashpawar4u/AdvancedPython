@@ -1,17 +1,52 @@
 from typing import List
 
+def climbStairs(n: int) -> int:
+    if n == 1:
+        return 1
+    prev2, prev1 = 1, 1
 
-class Solution:
-    def isPalindrome(self, x: int) -> bool:
-        if x < 0 or (x % 10 == 0 and x != 0):
-            return False
-        reversed_half = 0
+    for i in range(2, n+1):
+        current = prev1 + prev2
+        prev2 = prev1
+        prev1 = current
+    return prev1
 
-        while x > reversed_half:
-            reversed_half = reversed_half * 10 + x % 10
-            x //= 10
 
-        return x == reversed_half or x == reversed_half // 10
+n = 5
+climbStairs(n) 
+# def majorityElement(nums):
+#     candidate = None
+#     count = 0
+    
+#     for num in nums:
+#         if count == 0:
+#             candidate = num
+#         count += (1 if num == candidate else -1)
+    
+#     return candidate
+# s = nums = [2, 3, 2, 2, 2]
+# print(majorityElement(s))
+# def two_sum(nums, target):
+#     # Initialize two pointers: one at the beginning, one at the end
+#     left = 0
+#     right = len(nums) - 1
+    
+#     while left < right:
+#         current_sum = nums[left] + nums[right]
+        
+#         if current_sum == target:
+#             return [nums[left], nums[right]]  # Found the pair
+#         elif current_sum < target:
+#             left += 1  # Move the left pointer to the right to increase the sum
+#         else:
+#             right -= 1  # Move the right pointer to the left to decrease the sum
+    
+#     return [] 
+
+# nums = [1,2,3,4,6]
+# target = 6
+# print(two_sum(nums, target))
+
 
 
 # def maxArea(height):
