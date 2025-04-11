@@ -1,19 +1,86 @@
-from typing import List
+#from typing import List, Int, Set
+#def find_pairs_with(nums:List[Int], k:Int)-> Set(tuple(int, int)):
+# def find_pairs_with(nums, k):
 
-def climbStairs(n: int) -> int:
-    if n == 1:
-        return 1
-    prev2, prev1 = 1, 1
+#     pairs = set()
+    
+#     visited = set()
+    
+#     for num in nums:
+#         complement = k - num
+#         if complement in visited:
+#             pairs.add((min(num, complement), max(num, complement)))
+        
+#         visited.add(num)
+#     return pairs
 
-    for i in range(2, n+1):
-        current = prev1 + prev2
-        prev2 = prev1
-        prev1 = current
-    return prev1
+# print(find_pairs_with({4, 5, 7, 8, 10}, 15))
 
 
-n = 5
-climbStairs(n) 
+def find_pairs(nums: list[int], k: int) -> list[tuple[int, int]]:
+    seen = set()
+    pairs = []
+    
+    for num in nums:
+        complement = k - num
+        if complement in seen:
+            pairs.append((complement, num))
+        seen.add(num)
+    
+    return pairs
+
+# Example usage
+nums = [4, 5, 7, 8, 10]
+k = 15
+print(find_pairs(nums, k))
+
+# from typing import List
+# def divide(dividend, divisor):
+
+#     #Wdge case: Division by zero
+#     if divisor == 0 :
+#         raise ValueError("Cannot divide by zero")
+    
+#     print(dividend, divisor)
+#     negative = (dividend < 0) != (divisor < 0)
+
+
+#     dividend = abs(dividend)
+#     divisor = abs(divisor)
+
+
+#     print(dividend, divisor)
+
+#     quotient = 0 
+#     while dividend >= divisor:
+#         dividend -=divisor
+#         quotient +=1
+
+#     # Apply the negative sign if needed
+#     if negative:
+#         quotient = -quotient
+#     return quotient
+        
+# dividend = 18
+# divisor = 2
+# result = divide(dividend, divisor)
+# print(f"The result of {dividend} divided by {divisor} is: {result}")
+
+
+# def climbStairs(n: int) -> int:
+#     if n == 1:
+#         return 1
+#     prev2, prev1 = 1, 1
+
+#     for i in range(2, n+1):
+#         current = prev1 + prev2
+#         prev2 = prev1
+#         prev1 = current
+#     return prev1
+
+
+# n = 5
+# climbStairs(n) 
 # def majorityElement(nums):
 #     candidate = None
 #     count = 0
