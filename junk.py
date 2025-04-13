@@ -1,3 +1,16 @@
+from typing import List
+def majorityElement(nums: List[int]) -> int:
+        candidate = None
+        count = 0
+
+        for num in nums: 
+            if count == 0:
+                candidate = num
+            count += (1 if candidate == num else -1)
+        return candidate
+print(majorityElement([3,4,5,2,3,4]))
+
+
 #from typing import List, Int, Set
 #def find_pairs_with(nums:List[Int], k:Int)-> Set(tuple(int, int)):
 # def find_pairs_with(nums, k):
@@ -17,22 +30,22 @@
 # print(find_pairs_with({4, 5, 7, 8, 10}, 15))
 
 
-def find_pairs(nums: list[int], k: int) -> list[tuple[int, int]]:
-    seen = set()
-    pairs = []
+# def find_pairs(nums: list[int], k: int) -> list[tuple[int, int]]:
+#     seen = set()
+#     pairs = []
     
-    for num in nums:
-        complement = k - num
-        if complement in seen:
-            pairs.append((complement, num))
-        seen.add(num)
+#     for num in nums:
+#         complement = k - num
+#         if complement in seen:
+#             pairs.append((complement, num))
+#         seen.add(num)
     
-    return pairs
+#     return pairs
 
-# Example usage
-nums = [4, 5, 7, 8, 10]
-k = 15
-print(find_pairs(nums, k))
+# # Example usage
+# nums = [4, 5, 7, 8, 10]
+# k = 15
+# print(find_pairs(nums, k))
 
 # from typing import List
 # def divide(dividend, divisor):
