@@ -1,14 +1,30 @@
-from typing import List
-def majorityElement(nums: List[int]) -> int:
-        candidate = None
-        count = 0
+def find_pairs_with_sum(nums, target_sum):
+    """
+    Finds all pairs (x, y) in a list that sum to a given target.
 
-        for num in nums: 
-            if count == 0:
-                candidate = num
-            count += (1 if candidate == num else -1)
-        return candidate
-print(majorityElement([3,4,5,2,3,4]))
+    Args:
+        nums: A list of integers.
+        target_sum: The target sum.
+
+    Returns:
+        A list of tuples, where each tuple represents a pair (x, y) that sums to the target.
+    """
+    pairs = []
+    seen = set()  # To avoid duplicates and optimize
+
+    for num in nums:
+        complement = target_sum - num
+        if complement in seen:
+            pairs.append(tuple(sorted((num, complement))))  # Ensure consistent order
+        seen.add(num)
+
+    return list(set(pairs))  # Remove any duplicate pairs
+
+# Example usage:
+numbers = [4, 5, 7, 8, 10]
+target = 15
+result = find_pairs_with_sum(numbers, target)
+print(result)  # Output: [(7, 8), (5, 10)]
 
 
 #from typing import List, Int, Set
