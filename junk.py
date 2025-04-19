@@ -1,30 +1,60 @@
-def find_pairs_with_sum(nums, target_sum):
+from typing import List
+def search(nums: List[int], target: int) -> int:
     """
-    Finds all pairs (x, y) in a list that sum to a given target.
+    Searches for a target value in a rotated sorted array.
 
     Args:
-        nums: A list of integers.
-        target_sum: The target sum.
+    - nums: List[int] - A rotated sorted array with unique integers.
+    - target: int - The number we want to find.
 
     Returns:
-        A list of tuples, where each tuple represents a pair (x, y) that sums to the target.
+    - int - The index of the target in the array if found; otherwise, -1.
     """
-    pairs = []
-    seen = set()  # To avoid duplicates and optimize
+    left, right = 0, len(nums) - 1
 
-    for num in nums:
-        complement = target_sum - num
-        if complement in seen:
-            pairs.append(tuple(sorted((num, complement))))  # Ensure consistent order
-        seen.add(num)
+    while left <= right:
+        mid = (left + right) // 2
 
-    return list(set(pairs))  # Remove any duplicate pairs
+        if nums[mid] == target:
+            return mid
+        
+        #check if the lest half is sorted
+        if nums[left] <= nums[mid]:
+            if nums[left] <= target < nums[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        
+        else:
+            #right half is sorted 
+            if nums[mid] < target <= nums[right]:
+                left = mid + 1
+            
+            else:
+                right = mid - 1
+    return -1
 
-# Example usage:
-numbers = [4, 5, 7, 8, 10]
-target = 15
-result = find_pairs_with_sum(numbers, target)
-print(result)  # Output: [(7, 8), (5, 10)]
+if __name__ == "__main__":
+    # Test case 1
+    nums = [4, 5, 6, 7, 0, 1, 2]
+    target = 0
+
+    # result = search(nums, target)
+    # print(f"Target {target} found at index: {result}")  # Expected: 4
+
+    # Test case 2
+    nums2 = [6, 7, 1, 2, 3, 4, 5]
+    target2 = 3
+
+    result2 = search(nums2, target2)
+    print(f"Target {target2} found at index: {result2}")  # Expected: 4
+
+    # # Test case 3 (target not found)
+    # nums3 = [1, 2, 3, 4, 5]
+    # target3 = 6
+
+    # result3 = search(nums3, target3)
+    # print(f"Target {target3} found at index: {result3}")  # Expected: -1
 
 
 #from typing import List, Int, Set
