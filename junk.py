@@ -1,54 +1,51 @@
-from typing import List
-def search(nums: List[int], target: int) -> int:
-    """
-    Searches for a target value in a rotated sorted array.
+class Solution(object):
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        if n == 0:
+            return 0
+        if n == 1:
+            return nums[0]
 
-    Args:
-    - nums: List[int] - A rotated sorted array with unique integers.
-    - target: int - The number we want to find.
+        prev = 0
+        curr = nums[0]
 
-    Returns:
-    - int - The index of the target in the array if found; otherwise, -1.
-    """
-    left, right = 0, len(nums) - 1
+        for i in range(1, n):
+            new_curr = max(curr, prev + nums[i])
+            prev = curr
+            curr = new_curr
 
-    while left <= right:
-        mid = (left + right) // 2
-
-        if nums[mid] == target:
-            return mid
-        
-        #check if the lest half is sorted
-        if nums[left] <= nums[mid]:
-            if nums[left] <= target < nums[mid]:
-                right = mid - 1
-            else:
-                left = mid + 1
-        
-        else:
-            #right half is sorted 
-            if nums[mid] < target <= nums[right]:
-                left = mid + 1
-            
-            else:
-                right = mid - 1
-    return -1
+        return curr
 
 if __name__ == "__main__":
-    # Test case 1
-    nums = [4, 5, 6, 7, 0, 1, 2]
-    target = 0
+    sol = Solution()
+    test_cases = [
+        [1,2,3,1],        # Expected: 4 (rob 1 and 3)
+        [2,7,9,3,1]]
+    for nums in test_cases:
+        result = sol.rob(nums)
+        print(f"Houses: {nums} → Max Robbed Amount: {result}")
 
-    # result = search(nums, target)
-    # print(f"Target {target} found at index: {result}")  # Expected: 4
+# def max_number_from_digits(s: str) -> int:
+#     digit_count = [0] * 10
+#     for ch in s:
+#         digit_count[int(ch)] += 1
+#     result = []
+#     for digit in range(9, -1, -1):
+#         result.extend([str(digit)] * digit_count[digit])
+#     return int(''.join(result))
 
-    # Test case 2
-    nums2 = [6, 7, 1, 2, 3, 4, 5]
-    target2 = 3
 
-    result2 = search(nums2, target2)
-    print(f"Target {target2} found at index: {result2}")  # Expected: 4
 
+# inp = "340447"
+# out = max_number_from_digits(inp)
+# print(out)
+
+# print(nextGreaterElements(nums))  # Output: [4, 2, 4, -1, -1]
+# Output: 9
     # # Test case 3 (target not found)
     # nums3 = [1, 2, 3, 4, 5]
     # target3 = 6
