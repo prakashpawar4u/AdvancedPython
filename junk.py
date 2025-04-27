@@ -1,34 +1,155 @@
-class Solution(object):
-    def rob(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        n = len(nums)
-        if n == 0:
-            return 0
-        if n == 1:
-            return nums[0]
+import random
+from typing import List
+from collections import Counter
 
-        prev = 0
-        curr = nums[0]
+def minWindow(s: str, t: str) -> str:
+    if not s or not t:
+        return ""
 
-        for i in range(1, n):
-            new_curr = max(curr, prev + nums[i])
-            prev = curr
-            curr = new_curr
+    t_count = Counter(t)  # Frequency map of characters in t
+    window_count = {}     # Current window character frequencies
+    have, need = 0, len(t_count)  # How many unique chars matched
 
-        return curr
+    res = [-1, -1]
+    res_len = float('inf')
+    l = 0  # Left pointer of window
 
-if __name__ == "__main__":
-    sol = Solution()
-    test_cases = [
-        [1,2,3,1],        # Expected: 4 (rob 1 and 3)
-        [2,7,9,3,1]]
-    for nums in test_cases:
-        result = sol.rob(nums)
-        print(f"Houses: {nums} → Max Robbed Amount: {result}")
+    for r in range(len(s)):  # r is the right pointer
+        char = s[r]
+        window_count[char] = window_count.get(char, 0) + 1
 
+        if char in t_count and window_count[char] == t_count[char]:
+            have += 1
+
+        while have == need:
+            # Update result if this window is smaller
+            if (r - l + 1) < res_len:
+                res = [l, r]
+                res_len = r - l + 1
+
+            # Shrink from the left
+            window_count[s[l]] -= 1
+            if s[l] in t_count and window_count[s[l]] < t_count[s[l]]:
+                have -= 1
+            l += 1
+
+    l, r = res
+    return s[l:r+1] if res_len != float('inf') else ""
+
+print(minWindow("ADOBECODEBANC", "ABC"))  # Output: "BANC"
+print(minWindow("a", "a"))                # Output: "a"
+print(minWindow("a", "aa"))               # Output: ""
+
+# def maxProduct(nums):
+#     if not nums:
+#         return 0
+
+#     max_prod = min_prod = result = nums[0]
+
+#     for num in nums[1:]:
+#         if num < 0:
+#             max_prod, min_prod = min_prod, max_prod
+
+#         max_prod = max(num, max_prod * num)
+#         min_prod = min(num, min_prod * num)
+
+#         result = max(result, max_prod)
+
+#     return result
+
+# maxProduct([-2, 3, -4])
+
+# # --------- DRIVER CODE ------------
+# if __name__ == "__main__":
+#     test_cases = [
+#         ([2, 3, -2, 4], 6),
+#         ([-2, 0, -1], 0),
+#         ([0, 2], 2),
+#         ([-2, 3, -4], 24),
+#         ([2, -5, -2, -4, 3], 240)
+#     ]
+
+#     for i, (nums, expected) in enumerate(test_cases):
+#         result = maxProduct(nums)
+#         print(f"Test Case {i + 1}: {'Pass ✅' if result == expected else 'Fail ❌'} | Output: {result}, Expected: {expected}")
+
+
+# #41 Longest Palindromic string 
+
+# class Solution:
+#     def longestPalindrome(self, s: str) -> str:
+#         if len(s) < 2:
+#             return s
+
+#         start, end = 0, 0
+
+#         for i in range(len(s)):
+#             # Try to expand from single character (odd-length)
+#             len1 = self.expand_from_center(s, i, i)
+#             # Try to expand from a pair of characters (even-length)
+#             len2 = self.expand_from_center(s, i, i + 1)
+#             max_len = max(len1, len2)
+
+#             if max_len > end - start:
+#                 # Update the start and end indices of longest palindrome
+#                 start = i - (max_len - 1) // 2
+#                 end = i + max_len // 2
+
+#         return s[start:end + 1]
+
+#     def expand_from_center(self, s, left, right):
+#         # Expand while it's a palindrome
+#         while left >= 0 and right < len(s) and s[left] == s[right]:
+#             left -= 1
+#             right += 1
+#         return right - left - 1  # Length of palindrome
+
+
+# s = Solution()
+
+# # Positive cases
+# print(s.longestPalindrome("babad"))  # "bab" or "aba"
+
+# class Solution:
+#     def findKthLargest(self, nums: List[int], k: int) -> int:
+#         def partition(left, right):
+#             pivot_idx = random.randint(left, right)
+#             pivot = nums[pivot_idx]
+            
+#             # Move pivot to the end
+#             nums[pivot_idx], nums[right] = nums[right], nums[pivot_idx]
+#             store_idx = left
+
+#             for i in range(left, right):
+#                 if nums[i] > pivot:
+#                     nums[store_idx], nums[i] = nums[i], nums[store_idx]
+#                     store_idx += 1
+
+#             nums[store_idx], nums[right] = nums[right], nums[store_idx]
+#             return store_idx
+
+#         left, right = 0, len(nums) - 1
+#         k_index = k - 1  # kth largest means index k-1 after sorting descending
+
+#         while True:
+#             pos = partition(left, right)
+#             if pos == k_index:
+#                 return nums[pos]
+#             elif pos < k_index:
+#                 left = pos + 1
+#             else:
+#                 right = pos - 1
+
+# # nums = [3,2,1,5,6,4]
+# # k = 2
+
+# nums = [1]*1000000 + [2, 3, 4, 5,-5,-4,-3,-2,-1]
+# k = 50000
+
+# s = Solution()
+# #print(s.findKthLargest([3,2,1,5,5,6, 6,4], 2)) 
+
+# print(s.findKthLargest(nums, k)) 
 # def max_number_from_digits(s: str) -> int:
 #     digit_count = [0] * 10
 #     for ch in s:
