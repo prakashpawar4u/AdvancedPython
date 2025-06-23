@@ -1,44 +1,224 @@
-import random
+# def minPairSum(nums):
+#     # Since nums[i] is bounded (1 <= nums[i] <= 10^5), use counting sort
+#     MAX_VAL = 10
+#     count = [0] * (MAX_VAL + 1)
+
+#     for num in nums:
+#         count[num] += 1
+
+#     left, right = 1, MAX_VAL
+#     max_sum = 0
+
+#     while left <= right:
+#         # Move left pointer to next non-zero count
+#         while left <= right and count[left] == 0:
+#             left += 1
+#         # Move right pointer to previous non-zero count
+#         while left <= right and count[right] == 0:
+#             right -= 1
+#         if left > right:
+#             break
+
+#         # Pair left and right
+#         pair_count = min(count[left], count[right])
+#         if left == right:
+#             pair_count //= 2  # Only half can be paired when values are equal
+
+#         max_sum = max(max_sum, left + right)
+#         count[left] -= pair_count
+#         count[right] -= pair_count
+
+#     return max_sum
+
+# nums= [3,5,2,3]
+# res = minPairSum(nums)
+# print(res)
+
 from typing import List
-from collections import Counter
 
-def minWindow(s: str, t: str) -> str:
-    if not s or not t:
-        return ""
+class Solution:
+    def trap(self, height):
+        left, right = 0, len(height) - 1
+        left_max, right_max = 0, 0
+        water = 0
 
-    t_count = Counter(t)  # Frequency map of characters in t
-    window_count = {}     # Current window character frequencies
-    have, need = 0, len(t_count)  # How many unique chars matched
+        while left < right:
+            if height[left] < height[right]:
+                if height[left] >= left_max:
+                    left_max = height[left]
+                else:
+                    water += left_max - height[left]
+                left += 1
+            else:
+                if height[right] >= right_max:
+                    right_max = height[right]
+                else:
+                    water += right_max - height[right]
+                right -= 1
 
-    res = [-1, -1]
-    res_len = float('inf')
-    l = 0  # Left pointer of window
+        return water
+    
+if __name__ == "__main__":
+    # height = [4,2,0,3,2,5]
+    height = [0,1,0,2,1,0,1,3,2,1,2,1]
 
-    for r in range(len(s)):  # r is the right pointer
-        char = s[r]
-        window_count[char] = window_count.get(char, 0) + 1
 
-        if char in t_count and window_count[char] == t_count[char]:
-            have += 1
+    Sobj = Solution()
+    
+    result = Sobj.trap(height)
+    print("Output:", result)
 
-        while have == need:
-            # Update result if this window is smaller
-            if (r - l + 1) < res_len:
-                res = [l, r]
-                res_len = r - l + 1
+# class Solution:
+#     def numSubseq(self, nums: List[int], target: int) -> int:
+#         MOD = 10**9 + 7
 
-            # Shrink from the left
-            window_count[s[l]] -= 1
-            if s[l] in t_count and window_count[s[l]] < t_count[s[l]]:
-                have -= 1
-            l += 1
+#         # Step 1: Sort the array to make min/max handling easier
+#         nums.sort()
 
-    l, r = res
-    return s[l:r+1] if res_len != float('inf') else ""
+#         # Step 2: Precompute powers of 2 up to len(nums)
+#         # This is to calculate number of combinations quickly
+#         pow2 = [1] * len(nums)
+#         for i in range(1, len(nums)):
+#             pow2[i] = pow2[i - 1] * 2 % MOD
 
-print(minWindow("ADOBECODEBANC", "ABC"))  # Output: "BANC"
-print(minWindow("a", "a"))                # Output: "a"
-print(minWindow("a", "aa"))               # Output: ""
+#         print(f"POW2 = {pow2}")
+
+#         # Step 3: Use two pointers
+#         left, right = 0, len(nums) - 1
+#         result = 0
+
+#         while left <= right:
+#             # If the smallest and largest element sum is within target
+#             if nums[left] + nums[right] <= target:
+#                 # All subsets of elements between left and right are valid
+#                 # Count = 2^(right - left)
+#                 result += pow2[right - left]
+#                 result %= MOD  # keep it under MOD
+#                 left += 1
+#             else:
+#                 # If the sum is too big, move right pointer to try smaller max
+#                 right -= 1
+
+#         return result
+    
+
+# # Driver code
+# if __name__ == "__main__":
+#     # Example test case 1
+#     nums = [3, 5, 6, 7]
+#     target = 9
+#     sol = Solution()
+#     print("Output:", sol.numSubseq(nums, target))  # Expected output: 4
+
+    # # Example test case 2
+    # nums = [3, 3, 6, 8]
+    # target = 10
+    # print("Output:", sol.numSubseq(nums, target))  # Expected output: 6
+
+    # # Example test case 3
+    # nums = [2, 3, 3, 4, 6, 7]
+    # target = 12
+    # print("Output:", sol.numSubseq(nums, target))  # Expected output: 61
+
+
+# def max_number_from_digits(s: str) -> int:
+#     digit_count = [0] * 10
+#     print("Before ::",digit_count)
+#     for ch in s:
+#         digit_count[int(ch)] += 1
+#     print("Before ::",digit_count)
+    
+#     result = []
+#     for digit in range(9, -1, -1):
+#         print(i)
+
+
+
+# inp = "34037"
+# out = max_number_from_digits(inp)
+# print(out)
+# class MyQueue:
+#     def __init__(self):
+#         self.stack_in = []
+#         self.stack_out = []
+
+#     def push(self, x):
+#         self.stack_in.append(x)
+
+#     def pop(self):
+#         self._transfer_if_needed()
+#         return self.stack_out.pop()
+
+#     def peek(self):
+#         if not self.stack_out:
+#             self._transfer_if_needed()
+#         return self.stack_out[-1]
+
+#     def empty(self):
+#         return not self.stack_in and not self.stack_out
+
+#     def _transfer_if_needed(self):
+#         if not self.stack_out:
+#             while self.stack_in:
+#                 self.stack_out.append(self.stack_in.pop())
+
+# q = MyQueue()
+# q.push(10)
+# q.push(20)
+# print(q.peek())   # Output: 10
+# print(q.pop())    # Output: 10
+# print(q.empty())  # Output: False
+# q.pop()
+# print(q.empty())  # Output: True
+
+# q.push(1)
+# q.push(2)
+# q.push(3)
+# print(q.pop())  # 1
+# q.push(4)
+# print(q.pop())  # 2
+# print(q.pop())  # 3
+# print(q.pop())
+
+
+
+# def minWindow(s: str, t: str) -> str:
+#     if not s or not t:
+#         return ""
+
+#     t_count = Counter(t)  # Frequency map of characters in t
+#     window_count = {}     # Current window character frequencies
+#     have, need = 0, len(t_count)  # How many unique chars matched
+
+#     res = [-1, -1]
+#     res_len = float('inf')
+#     l = 0  # Left pointer of window
+
+#     for r in range(len(s)):  # r is the right pointer
+#         char = s[r]
+#         window_count[char] = window_count.get(char, 0) + 1
+
+#         if char in t_count and window_count[char] == t_count[char]:
+#             have += 1
+
+#         while have == need:
+#             # Update result if this window is smaller
+#             if (r - l + 1) < res_len:
+#                 res = [l, r]
+#                 res_len = r - l + 1
+
+#             # Shrink from the left
+#             window_count[s[l]] -= 1
+#             if s[l] in t_count and window_count[s[l]] < t_count[s[l]]:
+#                 have -= 1
+#             l += 1
+
+#     l, r = res
+#     return s[l:r+1] if res_len != float('inf') else ""
+
+# print(minWindow("ADOBECODEBANC", "ABC"))  # Output: "BANC"
+# print(minWindow("a", "a"))                # Output: "a"
+# print(minWindow("a", "aa"))               # Output: ""
 
 # def maxProduct(nums):
 #     if not nums:
