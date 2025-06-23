@@ -1,19 +1,443 @@
+# def minPairSum(nums):
+#     # Since nums[i] is bounded (1 <= nums[i] <= 10^5), use counting sort
+#     MAX_VAL = 10
+#     count = [0] * (MAX_VAL + 1)
+
+#     for num in nums:
+#         count[num] += 1
+
+#     left, right = 1, MAX_VAL
+#     max_sum = 0
+
+#     while left <= right:
+#         # Move left pointer to next non-zero count
+#         while left <= right and count[left] == 0:
+#             left += 1
+#         # Move right pointer to previous non-zero count
+#         while left <= right and count[right] == 0:
+#             right -= 1
+#         if left > right:
+#             break
+
+#         # Pair left and right
+#         pair_count = min(count[left], count[right])
+#         if left == right:
+#             pair_count //= 2  # Only half can be paired when values are equal
+
+#         max_sum = max(max_sum, left + right)
+#         count[left] -= pair_count
+#         count[right] -= pair_count
+
+#     return max_sum
+
+# nums= [3,5,2,3]
+# res = minPairSum(nums)
+# print(res)
+
 from typing import List
 
-def climbStairs(n: int) -> int:
-    if n == 1:
-        return 1
-    prev2, prev1 = 1, 1
+class Solution:
+    def trap(self, height):
+        left, right = 0, len(height) - 1
+        left_max, right_max = 0, 0
+        water = 0
 
-    for i in range(2, n+1):
-        current = prev1 + prev2
-        prev2 = prev1
-        prev1 = current
-    return prev1
+        while left < right:
+            if height[left] < height[right]:
+                if height[left] >= left_max:
+                    left_max = height[left]
+                else:
+                    water += left_max - height[left]
+                left += 1
+            else:
+                if height[right] >= right_max:
+                    right_max = height[right]
+                else:
+                    water += right_max - height[right]
+                right -= 1
+
+        return water
+    
+if __name__ == "__main__":
+    # height = [4,2,0,3,2,5]
+    height = [0,1,0,2,1,0,1,3,2,1,2,1]
 
 
-n = 5
-climbStairs(n) 
+    Sobj = Solution()
+    
+    result = Sobj.trap(height)
+    print("Output:", result)
+
+# class Solution:
+#     def numSubseq(self, nums: List[int], target: int) -> int:
+#         MOD = 10**9 + 7
+
+#         # Step 1: Sort the array to make min/max handling easier
+#         nums.sort()
+
+#         # Step 2: Precompute powers of 2 up to len(nums)
+#         # This is to calculate number of combinations quickly
+#         pow2 = [1] * len(nums)
+#         for i in range(1, len(nums)):
+#             pow2[i] = pow2[i - 1] * 2 % MOD
+
+#         print(f"POW2 = {pow2}")
+
+#         # Step 3: Use two pointers
+#         left, right = 0, len(nums) - 1
+#         result = 0
+
+#         while left <= right:
+#             # If the smallest and largest element sum is within target
+#             if nums[left] + nums[right] <= target:
+#                 # All subsets of elements between left and right are valid
+#                 # Count = 2^(right - left)
+#                 result += pow2[right - left]
+#                 result %= MOD  # keep it under MOD
+#                 left += 1
+#             else:
+#                 # If the sum is too big, move right pointer to try smaller max
+#                 right -= 1
+
+#         return result
+    
+
+# # Driver code
+# if __name__ == "__main__":
+#     # Example test case 1
+#     nums = [3, 5, 6, 7]
+#     target = 9
+#     sol = Solution()
+#     print("Output:", sol.numSubseq(nums, target))  # Expected output: 4
+
+    # # Example test case 2
+    # nums = [3, 3, 6, 8]
+    # target = 10
+    # print("Output:", sol.numSubseq(nums, target))  # Expected output: 6
+
+    # # Example test case 3
+    # nums = [2, 3, 3, 4, 6, 7]
+    # target = 12
+    # print("Output:", sol.numSubseq(nums, target))  # Expected output: 61
+
+
+# def max_number_from_digits(s: str) -> int:
+#     digit_count = [0] * 10
+#     print("Before ::",digit_count)
+#     for ch in s:
+#         digit_count[int(ch)] += 1
+#     print("Before ::",digit_count)
+    
+#     result = []
+#     for digit in range(9, -1, -1):
+#         print(i)
+
+
+
+# inp = "34037"
+# out = max_number_from_digits(inp)
+# print(out)
+# class MyQueue:
+#     def __init__(self):
+#         self.stack_in = []
+#         self.stack_out = []
+
+#     def push(self, x):
+#         self.stack_in.append(x)
+
+#     def pop(self):
+#         self._transfer_if_needed()
+#         return self.stack_out.pop()
+
+#     def peek(self):
+#         if not self.stack_out:
+#             self._transfer_if_needed()
+#         return self.stack_out[-1]
+
+#     def empty(self):
+#         return not self.stack_in and not self.stack_out
+
+#     def _transfer_if_needed(self):
+#         if not self.stack_out:
+#             while self.stack_in:
+#                 self.stack_out.append(self.stack_in.pop())
+
+# q = MyQueue()
+# q.push(10)
+# q.push(20)
+# print(q.peek())   # Output: 10
+# print(q.pop())    # Output: 10
+# print(q.empty())  # Output: False
+# q.pop()
+# print(q.empty())  # Output: True
+
+# q.push(1)
+# q.push(2)
+# q.push(3)
+# print(q.pop())  # 1
+# q.push(4)
+# print(q.pop())  # 2
+# print(q.pop())  # 3
+# print(q.pop())
+
+
+
+# def minWindow(s: str, t: str) -> str:
+#     if not s or not t:
+#         return ""
+
+#     t_count = Counter(t)  # Frequency map of characters in t
+#     window_count = {}     # Current window character frequencies
+#     have, need = 0, len(t_count)  # How many unique chars matched
+
+#     res = [-1, -1]
+#     res_len = float('inf')
+#     l = 0  # Left pointer of window
+
+#     for r in range(len(s)):  # r is the right pointer
+#         char = s[r]
+#         window_count[char] = window_count.get(char, 0) + 1
+
+#         if char in t_count and window_count[char] == t_count[char]:
+#             have += 1
+
+#         while have == need:
+#             # Update result if this window is smaller
+#             if (r - l + 1) < res_len:
+#                 res = [l, r]
+#                 res_len = r - l + 1
+
+#             # Shrink from the left
+#             window_count[s[l]] -= 1
+#             if s[l] in t_count and window_count[s[l]] < t_count[s[l]]:
+#                 have -= 1
+#             l += 1
+
+#     l, r = res
+#     return s[l:r+1] if res_len != float('inf') else ""
+
+# print(minWindow("ADOBECODEBANC", "ABC"))  # Output: "BANC"
+# print(minWindow("a", "a"))                # Output: "a"
+# print(minWindow("a", "aa"))               # Output: ""
+
+# def maxProduct(nums):
+#     if not nums:
+#         return 0
+
+#     max_prod = min_prod = result = nums[0]
+
+#     for num in nums[1:]:
+#         if num < 0:
+#             max_prod, min_prod = min_prod, max_prod
+
+#         max_prod = max(num, max_prod * num)
+#         min_prod = min(num, min_prod * num)
+
+#         result = max(result, max_prod)
+
+#     return result
+
+# maxProduct([-2, 3, -4])
+
+# # --------- DRIVER CODE ------------
+# if __name__ == "__main__":
+#     test_cases = [
+#         ([2, 3, -2, 4], 6),
+#         ([-2, 0, -1], 0),
+#         ([0, 2], 2),
+#         ([-2, 3, -4], 24),
+#         ([2, -5, -2, -4, 3], 240)
+#     ]
+
+#     for i, (nums, expected) in enumerate(test_cases):
+#         result = maxProduct(nums)
+#         print(f"Test Case {i + 1}: {'Pass ✅' if result == expected else 'Fail ❌'} | Output: {result}, Expected: {expected}")
+
+
+# #41 Longest Palindromic string 
+
+# class Solution:
+#     def longestPalindrome(self, s: str) -> str:
+#         if len(s) < 2:
+#             return s
+
+#         start, end = 0, 0
+
+#         for i in range(len(s)):
+#             # Try to expand from single character (odd-length)
+#             len1 = self.expand_from_center(s, i, i)
+#             # Try to expand from a pair of characters (even-length)
+#             len2 = self.expand_from_center(s, i, i + 1)
+#             max_len = max(len1, len2)
+
+#             if max_len > end - start:
+#                 # Update the start and end indices of longest palindrome
+#                 start = i - (max_len - 1) // 2
+#                 end = i + max_len // 2
+
+#         return s[start:end + 1]
+
+#     def expand_from_center(self, s, left, right):
+#         # Expand while it's a palindrome
+#         while left >= 0 and right < len(s) and s[left] == s[right]:
+#             left -= 1
+#             right += 1
+#         return right - left - 1  # Length of palindrome
+
+
+# s = Solution()
+
+# # Positive cases
+# print(s.longestPalindrome("babad"))  # "bab" or "aba"
+
+# class Solution:
+#     def findKthLargest(self, nums: List[int], k: int) -> int:
+#         def partition(left, right):
+#             pivot_idx = random.randint(left, right)
+#             pivot = nums[pivot_idx]
+            
+#             # Move pivot to the end
+#             nums[pivot_idx], nums[right] = nums[right], nums[pivot_idx]
+#             store_idx = left
+
+#             for i in range(left, right):
+#                 if nums[i] > pivot:
+#                     nums[store_idx], nums[i] = nums[i], nums[store_idx]
+#                     store_idx += 1
+
+#             nums[store_idx], nums[right] = nums[right], nums[store_idx]
+#             return store_idx
+
+#         left, right = 0, len(nums) - 1
+#         k_index = k - 1  # kth largest means index k-1 after sorting descending
+
+#         while True:
+#             pos = partition(left, right)
+#             if pos == k_index:
+#                 return nums[pos]
+#             elif pos < k_index:
+#                 left = pos + 1
+#             else:
+#                 right = pos - 1
+
+# # nums = [3,2,1,5,6,4]
+# # k = 2
+
+# nums = [1]*1000000 + [2, 3, 4, 5,-5,-4,-3,-2,-1]
+# k = 50000
+
+# s = Solution()
+# #print(s.findKthLargest([3,2,1,5,5,6, 6,4], 2)) 
+
+# print(s.findKthLargest(nums, k)) 
+# def max_number_from_digits(s: str) -> int:
+#     digit_count = [0] * 10
+#     for ch in s:
+#         digit_count[int(ch)] += 1
+#     result = []
+#     for digit in range(9, -1, -1):
+#         result.extend([str(digit)] * digit_count[digit])
+#     return int(''.join(result))
+
+
+
+# inp = "340447"
+# out = max_number_from_digits(inp)
+# print(out)
+
+# print(nextGreaterElements(nums))  # Output: [4, 2, 4, -1, -1]
+# Output: 9
+    # # Test case 3 (target not found)
+    # nums3 = [1, 2, 3, 4, 5]
+    # target3 = 6
+
+    # result3 = search(nums3, target3)
+    # print(f"Target {target3} found at index: {result3}")  # Expected: -1
+
+
+#from typing import List, Int, Set
+#def find_pairs_with(nums:List[Int], k:Int)-> Set(tuple(int, int)):
+# def find_pairs_with(nums, k):
+
+#     pairs = set()
+    
+#     visited = set()
+    
+#     for num in nums:
+#         complement = k - num
+#         if complement in visited:
+#             pairs.add((min(num, complement), max(num, complement)))
+        
+#         visited.add(num)
+#     return pairs
+
+# print(find_pairs_with({4, 5, 7, 8, 10}, 15))
+
+
+# def find_pairs(nums: list[int], k: int) -> list[tuple[int, int]]:
+#     seen = set()
+#     pairs = []
+    
+#     for num in nums:
+#         complement = k - num
+#         if complement in seen:
+#             pairs.append((complement, num))
+#         seen.add(num)
+    
+#     return pairs
+
+# # Example usage
+# nums = [4, 5, 7, 8, 10]
+# k = 15
+# print(find_pairs(nums, k))
+
+# from typing import List
+# def divide(dividend, divisor):
+
+#     #Wdge case: Division by zero
+#     if divisor == 0 :
+#         raise ValueError("Cannot divide by zero")
+    
+#     print(dividend, divisor)
+#     negative = (dividend < 0) != (divisor < 0)
+
+
+#     dividend = abs(dividend)
+#     divisor = abs(divisor)
+
+
+#     print(dividend, divisor)
+
+#     quotient = 0 
+#     while dividend >= divisor:
+#         dividend -=divisor
+#         quotient +=1
+
+#     # Apply the negative sign if needed
+#     if negative:
+#         quotient = -quotient
+#     return quotient
+        
+# dividend = 18
+# divisor = 2
+# result = divide(dividend, divisor)
+# print(f"The result of {dividend} divided by {divisor} is: {result}")
+
+
+# def climbStairs(n: int) -> int:
+#     if n == 1:
+#         return 1
+#     prev2, prev1 = 1, 1
+
+#     for i in range(2, n+1):
+#         current = prev1 + prev2
+#         prev2 = prev1
+#         prev1 = current
+#     return prev1
+
+
+# n = 5
+# climbStairs(n) 
 # def majorityElement(nums):
 #     candidate = None
 #     count = 0

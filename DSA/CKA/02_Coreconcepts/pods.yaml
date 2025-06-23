@@ -1,0 +1,20 @@
+piVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+  nodeName: node01S
+
+
+  # kubectl create -f pod.yaml 
+  # kubectl get pods
+  # kubectl describe pod nginx 
+  # kubectl get pods -o wide
