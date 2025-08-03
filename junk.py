@@ -1,3 +1,58 @@
+def characterReplacement(s: str, k: int) -> int:
+    from collections import defaultdict
+
+    count = defaultdict(int)
+    max_count = 0
+    res = 0 
+    left = 0 
+
+    for right in range(len(s)):
+        count[s[right]] +=1
+        max_count = max(max_count, count[s[right]])
+
+        if (right- left + 1) - max_count > k:
+            count[s[left]] -= 1
+            left += 1
+
+        res = max(res, right -left + 1)
+
+    return res
+
+res = characterReplacement("AABABBA", 1)
+print(res)
+
+# def longestSum(s: str) -> int:
+#     start = 0
+#     max_len = 0
+#     char_map = {}
+#     for end in range(len(s)):
+#         char = s[end]
+#         if char in char_map and char_map[char] >= start:
+#             start = char_map[char] + 1
+#         char_map[char] = end
+#         max_len = max(max_len, end - start + 1)
+#     return max_len
+
+
+# res = longestSum("abcabcbb")
+# print(res)
+# s = "eceba"
+# char_map = {}
+# max_length = 1
+
+
+# for end in range(len(s)):
+#     char = s[end]
+#     char_map[char]= end
+
+#     if len(char_map) > 2:
+#         del_char = min(char_map, key=char_map.get)
+#         start = char_map[del_char] + 1
+#         del char_map[del_char]
+#     print("END=> ", end, char_map)
+# max_length = max(max_length, end - start + 1)
+# print(max_length)
+
 # def minPairSum(nums):
 #     # Since nums[i] is bounded (1 <= nums[i] <= 10^5), use counting sort
 #     MAX_VAL = 10
@@ -34,39 +89,39 @@
 # res = minPairSum(nums)
 # print(res)
 
-from typing import List
+# from typing import List
 
-class Solution:
-    def trap(self, height):
-        left, right = 0, len(height) - 1
-        left_max, right_max = 0, 0
-        water = 0
+# class Solution:
+#     def trap(self, height):
+#         left, right = 0, len(height) - 1
+#         left_max, right_max = 0, 0
+#         water = 0
 
-        while left < right:
-            if height[left] < height[right]:
-                if height[left] >= left_max:
-                    left_max = height[left]
-                else:
-                    water += left_max - height[left]
-                left += 1
-            else:
-                if height[right] >= right_max:
-                    right_max = height[right]
-                else:
-                    water += right_max - height[right]
-                right -= 1
+#         while left < right:
+#             if height[left] < height[right]:
+#                 if height[left] >= left_max:
+#                     left_max = height[left]
+#                 else:
+#                     water += left_max - height[left]
+#                 left += 1
+#             else:
+#                 if height[right] >= right_max:
+#                     right_max = height[right]
+#                 else:
+#                     water += right_max - height[right]
+#                 right -= 1
 
-        return water
+#         return water
     
-if __name__ == "__main__":
-    # height = [4,2,0,3,2,5]
-    height = [0,1,0,2,1,0,1,3,2,1,2,1]
+# if __name__ == "__main__":
+#     # height = [4,2,0,3,2,5]
+#     height = [0,1,0,2,1,0,1,3,2,1,2,1]
 
 
-    Sobj = Solution()
+#     Sobj = Solution()
     
-    result = Sobj.trap(height)
-    print("Output:", result)
+#     result = Sobj.trap(height)
+#     print("Output:", result)
 
 # class Solution:
 #     def numSubseq(self, nums: List[int], target: int) -> int:
