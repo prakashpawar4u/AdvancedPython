@@ -18,7 +18,7 @@ def characterReplacement(s: str, k: int) -> int:
 
     return res
 
-res = characterReplacement("AABABBA", 2)
+res = characterReplacement("AABABBA", 1)
 print(res)
 
 # def longestSum(s: str) -> int:
