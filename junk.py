@@ -1,18 +1,41 @@
-def longestSum(s: str) -> int:
-    start = 0
-    max_len = 0
-    char_map = {}
-    for end in range(len(s)):
-        char = s[end]
-        if char in char_map and char_map[char] >= start:
-            start = char_map[char] + 1
-        char_map[char] = end
-        max_len = max(max_len, end - start + 1)
-    return max_len
+def characterReplacement(s: str, k: int) -> int:
+    from collections import defaultdict
 
+    count = defaultdict(int)
+    max_count = 0
+    res = 0 
+    left = 0 
 
-res = longestSum("abcabcbb")
+    for right in range(len(s)):
+        count[s[right]] +=1
+        max_count = max(max_count, count[s[right]])
+
+        if (right- left + 1) - max_count > k:
+            count[s[left]] -= 1
+            left += 1
+
+        res = max(res, right -left + 1)
+
+    return res
+
+res = characterReplacement("AABABBA", 2)
 print(res)
+
+# def longestSum(s: str) -> int:
+#     start = 0
+#     max_len = 0
+#     char_map = {}
+#     for end in range(len(s)):
+#         char = s[end]
+#         if char in char_map and char_map[char] >= start:
+#             start = char_map[char] + 1
+#         char_map[char] = end
+#         max_len = max(max_len, end - start + 1)
+#     return max_len
+
+
+# res = longestSum("abcabcbb")
+# print(res)
 # s = "eceba"
 # char_map = {}
 # max_length = 1
