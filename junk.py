@@ -1,19 +1,23 @@
-class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        char_index = {}
-        start = max_len = 0
+def lengthOfLongestSubstringTwoDistinct(s: str) -> int:
+    from collections import defaultdict
+    char_count = defaultdict(int)
+    left = max_len = 0
+    for right in range(len(s)):
+        char_count[s[right]] += 1
 
-        for end in range(len(s)):
-            if s[end] in char_index and char_index[s[end]] >= start:
-                start = char_index[s[end]] + 1
-            char_index[s[end]] = end
-            max_len = max(max_len, end - start + 1)
-        return max_len
-        
+        #sliding window
+        while len(char_count) > 2:
+            char_count[s[left]] -= 1
+            if char_count[s[left]] == 0:
+                del char_count[s[left]]
+            left += 1
 
-sobj = Solution()
-max_len = sobj.lengthOfLongestSubstring("abcabcbb")
-print(max_len)
+            print(char_count)
+        max_len = max(max_len, right - left + 1)
+    return max_len 
+
+
+print(lengthOfLongestSubstringTwoDistinct("eceeebaaaaaaa"))
 
 
 # def characterReplacement(s: str, k: int) -> int:
