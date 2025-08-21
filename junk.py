@@ -1,25 +1,43 @@
-def characterReplacement(s: str, k: int) -> int:
-    from collections import defaultdict
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        char_index = {}
+        start = max_len = 0
 
-    count = defaultdict(int)
-    max_count = 0
-    res = 0 
-    left = 0 
+        for end in range(len(s)):
+            if s[end] in char_index and char_index[s[end]] >= start:
+                start = char_index[s[end]] + 1
+            char_index[s[end]] = end
+            max_len = max(max_len, end - start + 1)
+        return max_len
+        
 
-    for right in range(len(s)):
-        count[s[right]] +=1
-        max_count = max(max_count, count[s[right]])
+sobj = Solution()
+max_len = sobj.lengthOfLongestSubstring("abcabcbb")
+print(max_len)
 
-        if (right- left + 1) - max_count > k:
-            count[s[left]] -= 1
-            left += 1
 
-        res = max(res, right -left + 1)
+# def characterReplacement(s: str, k: int) -> int:
+#     from collections import defaultdict
 
-    return res
+#     count = defaultdict(int)
+#     max_count = 0
+#     res = 0 
+#     left = 0 
 
-res = characterReplacement("AABABBA", 1)
-print(res)
+#     for right in range(len(s)):
+#         count[s[right]] +=1
+#         max_count = max(max_count, count[s[right]])
+
+#         if (right- left + 1) - max_count > k:
+#             count[s[left]] -= 1
+#             left += 1
+
+#         res = max(res, right -left + 1)
+
+#     return res
+
+# res = characterReplacement("AABABBA", 1)
+# print(res)
 
 # def longestSum(s: str) -> int:
 #     start = 0
