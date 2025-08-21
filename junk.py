@@ -1,25 +1,47 @@
-def characterReplacement(s: str, k: int) -> int:
+def lengthOfLongestSubstringTwoDistinct(s: str) -> int:
     from collections import defaultdict
-
-    count = defaultdict(int)
-    max_count = 0
-    res = 0 
-    left = 0 
-
+    char_count = defaultdict(int)
+    left = max_len = 0
     for right in range(len(s)):
-        count[s[right]] +=1
-        max_count = max(max_count, count[s[right]])
+        char_count[s[right]] += 1
 
-        if (right- left + 1) - max_count > k:
-            count[s[left]] -= 1
+        #sliding window
+        while len(char_count) > 2:
+            char_count[s[left]] -= 1
+            if char_count[s[left]] == 0:
+                del char_count[s[left]]
             left += 1
 
-        res = max(res, right -left + 1)
+            print(char_count)
+        max_len = max(max_len, right - left + 1)
+    return max_len 
 
-    return res
 
-res = characterReplacement("AABABBA", 1)
-print(res)
+print(lengthOfLongestSubstringTwoDistinct("eceeebaaaaaaa"))
+
+
+# def characterReplacement(s: str, k: int) -> int:
+#     from collections import defaultdict
+
+#     count = defaultdict(int)
+#     max_count = 0
+#     res = 0 
+#     left = 0 
+
+#     for right in range(len(s)):
+#         count[s[right]] +=1
+#         max_count = max(max_count, count[s[right]])
+
+#         if (right- left + 1) - max_count > k:
+#             count[s[left]] -= 1
+#             left += 1
+
+#         res = max(res, right -left + 1)
+
+#     return res
+
+# res = characterReplacement("AABABBA", 1)
+# print(res)
 
 # def longestSum(s: str) -> int:
 #     start = 0
