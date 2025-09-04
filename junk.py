@@ -1,23 +1,42 @@
-def lengthOfLongestSubstringTwoDistinct(s: str) -> int:
-    from collections import defaultdict
-    char_count = defaultdict(int)
-    left = max_len = 0
-    for right in range(len(s)):
-        char_count[s[right]] += 1
+def isHappy_set(n:int) -> bool:
+    def sum_of_squares(num: int) -> int:
+        total = 0
+        while num > 0: 
+            digit = num % 10
+            total += digit * digit
+            num //= 10
+        return total 
+    seen = set()
+    while n != 1:
+        if n in seen:
+            return False
+        seen.add(n)
+        n = sum_of_squares(n)
 
-        #sliding window
-        while len(char_count) > 2:
-            char_count[s[left]] -= 1
-            if char_count[s[left]] == 0:
-                del char_count[s[left]]
-            left += 1
+    return True
 
-            print(char_count)
-        max_len = max(max_len, right - left + 1)
-    return max_len 
+print(isHappy_set(19))  # True
+
+# def lengthOfLongestSubstringTwoDistinct(s: str) -> int:
+#     from collections import defaultdict
+#     char_count = defaultdict(int)
+#     left = max_len = 0
+#     for right in range(len(s)):
+#         char_count[s[right]] += 1
+
+#         #sliding window
+#         while len(char_count) > 2:
+#             char_count[s[left]] -= 1
+#             if char_count[s[left]] == 0:
+#                 del char_count[s[left]]
+#             left += 1
+
+#             print(char_count)
+#         max_len = max(max_len, right - left + 1)
+#     return max_len 
 
 
-print(lengthOfLongestSubstringTwoDistinct("eceeebaaaaaaa"))
+# print(lengthOfLongestSubstringTwoDistinct("eceeebaaaaaaa"))
 
 
 # def characterReplacement(s: str, k: int) -> int:
