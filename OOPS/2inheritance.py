@@ -5,8 +5,8 @@ class Animal:
     def whoAmI(self):
         print("Animal")
     
-    def eat(self):
-        print("Eating")
+    def eat(self,diet):
+        print(f"Eats {diet}")
 
 
 class Dog(Animal):
@@ -23,5 +23,5 @@ class Dog(Animal):
 
 d = Dog()
 d.whoAmI()
-d.eat()
+d.eat("meat")
 d.bark()
